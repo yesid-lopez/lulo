@@ -111,6 +111,11 @@ export default function Footer() {
           <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter absolute bottom-[-3rem] z-40">
             lulo
           </h1>
+          <img 
+            src="/lulo.png" 
+            alt="Lulo Logo" 
+            className="w-36 h-36 md:w-48 md:h-48 absolute bottom-[-5rem] right-0 z-40" 
+          />
         </div>
       </div>
     </footer>

@@ -29,11 +29,7 @@ export default function Home() {
           <div className="text-[120px] md:text-[180px] font-light leading-none lulo-text">
             lulo
           </div>
-          <div className="mt-12 rounded-full border border-gray-300 p-8 cursor-pointer">
-            <svg className="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </div>
+            <img src="/lulo.png" alt="Lulo Logo" className="w-48 h-48" />
         </div>
 
         {/* Right Column */}
