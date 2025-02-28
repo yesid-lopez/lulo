@@ -8,7 +8,7 @@ export default function Footer() {
   const { t } = useTranslation();
   
   return (
-    <footer className="bg-black text-white relative">
+    <footer className="bg-black text-white relative overflow-hidden">
       {/* Curved top edge - concave style - reduced height */}
       <div className="h-6 w-full bg-[#F5F5F5] relative overflow-hidden">
         <div className="absolute bottom-0 left-0 right-0 h-12 w-[200%] bg-black rounded-t-[100%] left-[-50%]"></div>
@@ -59,22 +59,22 @@ export default function Footer() {
           
           {/* The Good Column */}
           <div>
-            <h3 className="text-lg mb-4">The Good</h3>
+            <h3 className="text-lg mb-4">{t('theGood')}</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
-              <li><Link href="/about-us" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="/contact-us" className="hover:text-white transition-colors">Contact Us</Link></li>
+              <li><Link href="/" className="hover:text-white transition-colors">{t('home')}</Link></li>
+              <li><Link href="/case-studies" className="hover:text-white transition-colors">{t('caseStudies')}</Link></li>
+              <li><Link href="/about-us" className="hover:text-white transition-colors">{t('aboutUs')}</Link></li>
+              <li><Link href="/contact-us" className="hover:text-white transition-colors">{t('contactUs')}</Link></li>
             </ul>
           </div>
           
           {/* The Boring Column */}
           <div>
-            <h3 className="text-lg mb-4">The Boring</h3>
+            <h3 className="text-lg mb-4">{t('theBoring')}</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
-              <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
-              <li><Link href="/rules" className="hover:text-white transition-colors">Play by the Rules</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">{t('privacyPolicy')}</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">{t('termsOfService')}</Link></li>
+              <li><Link href="/cookies" className="hover:text-white transition-colors">{t('cookiePolicy')}</Link></li>
             </ul>
           </div>
           

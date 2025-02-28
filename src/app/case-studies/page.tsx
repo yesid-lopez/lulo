@@ -93,9 +93,9 @@ export default function CaseStudies() {
       
       <div className="px-8 py-8 pt-8 md:px-12 md:py-12 md:pt-8 lg:px-24 lg:py-24 lg:pt-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sora-text">Selected Works</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sora-text">{t('selectedWorks')}</h1>
           <p className="text-sm md:text-base lg:text-lg text-gray-600 sora-light max-w-xl">
-            Explore our innovative AI solutions and their real-world impact.
+            {t('exploreAISolutions')}
           </p>
         </div>
         

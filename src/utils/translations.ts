@@ -6,9 +6,9 @@ type Translations = {
 
 export const translations: Translations = {
   en: {
-    caseStudies: 'CASE STUDIES',
-    contactUs: 'CONTACT US',
-    aboutUs: 'ABOUT US',
+    caseStudies: 'Case Studies',
+    contactUs: 'Contact Us',
+    aboutUs: 'About Us',
     dedicated: 'Innovation Made Simple.',
     subtitle: 'Advanced AI Applications and Intelligent Agents',
     applyTodayLine1: 'The next big thing? It starts',
@@ -55,11 +55,29 @@ export const translations: Translations = {
     'contact': 'Contact',
     'welcome': 'Welcome to our website',
     'description': 'This is a multilingual website example',
+    // About Us page translations
+    meetTheFounders: 'Meet the Founders.',
+    foundersDescription: 'Born in Colombia, Where Innovation Meets Passion. We\'re innovators, lifelong learners, and coffee lovers—turning complex AI into simple, powerful solutions.',
+    saraName: 'Sara Ortiz Drada',
+    saraRole: 'iOS Developer',
+    yesidName: 'Yesid Leonardo López Sierra',
+    yesidRole: 'AI Engineer',
+    linkedin: 'LinkedIn',
+    // Case Studies page translations
+    selectedWorks: 'Selected Works',
+    exploreAISolutions: 'Explore our innovative AI solutions and their real-world impact.',
+    // Footer translations
+    theGood: 'The Good',
+    theBoring: 'The Boring',
+    privacyPolicy: 'Privacy Policy',
+    termsOfService: 'Terms of Service',
+    cookiePolicy: 'Cookie Policy',
+    copyright: '© 2024 lulo. All rights reserved.',
   },
   es: {
-    caseStudies: 'CASOS DE ESTUDIO',
-    contactUs: 'CONTÁCTENOS',
-    aboutUs: 'SOBRE NOSOTROS',
+    caseStudies: 'Casos de Estudio',
+    contactUs: 'Contáctenos',
+    aboutUs: 'Sobre Nosotros',
     dedicated: 'Innovación Simplificada.',
     subtitle: 'Aplicaciones Avanzadas de IA y Agentes Inteligentes',
     applyTodayLine1: '¿Lo próximo grande? Comienza',
@@ -106,6 +124,24 @@ export const translations: Translations = {
     'contact': 'Contacto',
     'welcome': 'Bienvenido a nuestro sitio web',
     'description': 'Este es un ejemplo de sitio web multilingüe',
+    // About Us page translations
+    meetTheFounders: 'Conoce a los Fundadores.',
+    foundersDescription: 'Nacidos en Colombia, donde la innovación se encuentra con la pasión. Somos innovadores, aprendices de por vida y amantes del café, convirtiendo la IA compleja en soluciones simples y poderosas.',
+    saraName: 'Sara Ortiz Drada',
+    saraRole: 'Desarrolladora iOS',
+    yesidName: 'Yesid Leonardo López Sierra',
+    yesidRole: 'Ingeniero de IA',
+    linkedin: 'LinkedIn',
+    // Case Studies page translations
+    selectedWorks: 'Trabajos Seleccionados',
+    exploreAISolutions: 'Explora nuestras soluciones innovadoras de IA y su impacto en el mundo real.',
+    // Footer translations
+    theGood: 'Lo Bueno',
+    theBoring: 'Lo Aburrido',
+    privacyPolicy: 'Política de Privacidad',
+    termsOfService: 'Términos de Servicio',
+    cookiePolicy: 'Política de Cookies',
+    copyright: '© 2024 lulo. Todos los derechos reservados.',
   },
 };
 
