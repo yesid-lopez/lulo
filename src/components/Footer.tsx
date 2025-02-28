@@ -62,9 +62,9 @@ export default function Footer() {
             <h3 className="text-lg mb-4">The Good</h3>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="/about-us" className="hover:text-white transition-colors">Manifesto</Link></li>
-              <li><Link href="/case-studies" className="hover:text-white transition-colors">Research</Link></li>
-              <li><Link href="/contact-us" className="hover:text-white transition-colors">Careers</Link></li>
+              <li><Link href="/case-studies" className="hover:text-white transition-colors">Case Studies</Link></li>
+              <li><Link href="/about-us" className="hover:text-white transition-colors">About Us</Link></li>
+              <li><Link href="/contact-us" className="hover:text-white transition-colors">Contact Us</Link></li>
             </ul>
           </div>
           
@@ -84,12 +84,12 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>
                 <a 
-                  href="https://twitter.com/lulo" 
+                  href="https://linkedin.com/company/lulo" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
                 >
-                  X
+                  LinkedIn
                 </a>
               </li>
               <li>
