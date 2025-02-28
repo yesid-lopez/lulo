@@ -34,7 +34,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8f7f2;
+  background-color: #F5F5F5;
 }
 
 code {
@@ -43,16 +43,16 @@ code {
 }
 
 .lulo-text {
-  font-family: var(--font-poppins), sans-serif;
-  font-weight: 300;
+  font-family: var(--font-poppins), sans-serif !important;
+  font-weight: 500 !important;
 }
 
 .sora-text {
-  font-family: var(--font-sora), sans-serif;
-  font-weight: 400;
+  font-family: var(--font-sora), sans-serif !important;
+  font-weight: 600 !important;
 }
 
 .sora-light {
-  font-family: var(--font-sora), sans-serif;
-  font-weight: 300;
+  font-family: var(--font-sora), sans-serif !important;
+  font-weight: 400 !important;
 }

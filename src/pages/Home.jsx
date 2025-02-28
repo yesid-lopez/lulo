@@ -9,7 +9,7 @@ const Home = () => {
       instagram: 'INSTAGRAM',
       faq: 'FAQ',
       apply: 'APPLY',
-      tagline: 'Dedicated sales & support for represented artists',
+      tagline: 'Advanced AI Applications for Smarter Interactions.',
       applyButton: 'Apply Today'
     },
     es: {

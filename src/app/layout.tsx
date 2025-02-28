@@ -20,8 +20,11 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: 'lulo - Dedicated sales & support for represented artists',
-  description: 'lulo provides dedicated sales and support for represented artists',
+  title: 'lulo - Innovation Made Simple',
+  description: 'How can we help bring your ideas to life? Share your vision with us, and we’ll get back to you shortly with AI-powered solutions designed for impact.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
