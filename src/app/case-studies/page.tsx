@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Footer from '@/components/Footer';
 
 const CaseStudyCard = ({ 
   title, 
@@ -90,7 +91,7 @@ export default function CaseStudies() {
         </div>
       </nav>
       
-      <div className="px-8 py-8 pt-8 md:px-12 md:py-12 md:pt-8 lg:px-24 lg:py-24 lg:pt-8">
+      <div className="px-8 py-8 pt-8 md:px-12 md:py-12 md:pt-8 lg:px-24 lg:py-24 lg:pt-8 flex-grow">
         <div className="mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sora-text">Selected Works</h1>
           <p className="text-sm md:text-base lg:text-lg text-gray-600 sora-light max-w-xl">
@@ -110,6 +111,8 @@ export default function CaseStudies() {
           ))}
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 } 

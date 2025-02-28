@@ -3,6 +3,7 @@
 import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Footer from '@/components/Footer';
 
 export default function AboutUs() {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ export default function AboutUs() {
         </div>
       </nav>
       
-      <div className="flex flex-col md:flex-row min-h-[calc(100vh-73px)]">
+      <div className="flex flex-col md:flex-row min-h-[calc(100vh-73px)] flex-grow">
         <div className="w-full md:w-1/2 p-8 md:px-24">
           <div className="md:max-w-md md:ml-auto">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 sora-text">
@@ -76,6 +77,8 @@ export default function AboutUs() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 } 

@@ -4,6 +4,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useState } from 'react';
+import Footer from '@/components/Footer';
 
 export default function ContactUs() {
   const { t } = useTranslation();
@@ -49,7 +50,7 @@ export default function ContactUs() {
         </div>
       </nav>
       
-      <div className="p-4 md:p-8 max-w-6xl mx-auto w-full">
+      <div className="p-4 md:p-8 max-w-6xl mx-auto w-full flex-grow">
         <div className="flex flex-col md:flex-row gap-8 md:gap-16">
           {/* Left Column - Form Title */}
           <div className="md:w-1/3">
@@ -149,6 +150,8 @@ export default function ContactUs() {
           </div>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 } 
