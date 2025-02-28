@@ -84,7 +84,7 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>
                 <a 
-                  href="https://linkedin.com/company/lulo" 
+                  href="https://linkedin.com/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -94,7 +94,7 @@ export default function Footer() {
               </li>
               <li>
                 <a 
-                  href="https://instagram.com/lulo" 
+                  href="https://instagram.com/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"

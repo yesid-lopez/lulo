@@ -43,7 +43,7 @@ export default function Home() {
             </p>
             <div className="mt-1 sm:mt-2">
               <Link 
-                href="/apply" 
+                href="/contact-us" 
                 className="text-black text-base sm:text-lg hover:underline transition duration-300 block sora-light"
               >
                 <span>{t('applyTodayLine1')}</span>
