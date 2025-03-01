@@ -106,15 +106,15 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* lulo Text */}
+        {/* lulo Text - Improved responsiveness */}
         <div className="mt-8 relative overflow-hidden" style={{ height: '8rem' }}>
-          <h1 className="text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter absolute bottom-[-3rem] z-40">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter absolute bottom-[-1rem] sm:bottom-[-1.25rem] md:bottom-[-2rem] lg:bottom-[-3rem] z-40">
             lulo
           </h1>
           <img 
             src="/lulo.png" 
             alt="Lulo Logo" 
-            className="w-36 h-36 md:w-48 md:h-48 absolute bottom-[-5rem] right-0 z-40" 
+            className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 absolute bottom-[-3rem] md:bottom-[-4rem] lg:bottom-[-5rem] right-0 z-40" 
           />
         </div>
       </div>
