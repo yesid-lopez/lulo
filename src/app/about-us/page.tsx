@@ -18,7 +18,7 @@ export default function AboutUs() {
             <h1 className="text-3xl md:text-4xl font-bold mb-4 sora-text">
               {t('meetTheFounders')}
             </h1>
-            <p className="text-lg sora-light mb-12">
+            <p className="text-base text-gray-600 sora-light mb-12">
               {t('foundersDescription')}
             </p>
           </div>
@@ -39,10 +39,13 @@ export default function AboutUs() {
                 href="https://www.linkedin.com/in/saradrada/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-gray-800 hover:underline"
               >
                 {t('linkedin')}
               </Link>
+              <a href="mailto:saradrada@luloai.com" className="text-gray-800 hover:underline">
+                saradrada@luloai.com
+              </a>
             </div>
 
             {/* Yesid's Card */}
@@ -58,10 +61,13 @@ export default function AboutUs() {
                 href="https://www.linkedin.com/in/yesid-lopez-sierra/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
+                className="text-gray-800 hover:underline"
               >
                 {t('linkedin')}
               </Link>
+              <a href="mailto:yesidlopez@luloai.com" className="text-gray-800 hover:underline">
+                yesidlopez@luloai.com
+              </a>
             </div>
           </div>
         </div>
