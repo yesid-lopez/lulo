@@ -3,7 +3,7 @@
 import React, { useState, useEffect, createContext, ReactNode } from 'react';
 import { translations } from '../utils/translations';
 
-type Language = 'en' | 'es';
+type Language = 'en' | 'es' | 'de';
 
 interface TranslationContextType {
   t: (key: string) => string;
