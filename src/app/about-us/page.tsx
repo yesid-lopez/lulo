@@ -2,7 +2,7 @@
 
 import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 export default function AboutUs() {
@@ -10,18 +10,7 @@ export default function AboutUs() {
   
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-4 md:px-16 py-4 border-b border-gray-200">
-        <div className="text-2xl font-light">
-          <Link href="/" className="lulo-text">lulo</Link>
-        </div>
-        <div className="flex space-x-6 md:space-x-12 items-center">
-          <Link href="/case-studies" className="text-sm md:text-base hover:underline uppercase">{t('caseStudies')}</Link>
-          <Link href="/contact-us" className="text-sm md:text-base hover:underline uppercase">{t('contactUs')}</Link>
-          <Link href="/about-us" className="text-sm md:text-base hover:underline font-bold uppercase">{t('aboutUs')}</Link>
-          <LanguageSwitcher />
-        </div>
-      </nav>
+      <Navigation />
       
       <div className="flex flex-col md:flex-row min-h-[calc(100vh-73px)] flex-grow">
         <div className="w-full md:w-1/2 p-8 md:px-24">

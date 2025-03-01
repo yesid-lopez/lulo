@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import LanguageSwitcher from '@/components/LanguageSwitcher';
+import Navigation from '@/components/Navigation';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Home() {
@@ -9,18 +9,7 @@ export default function Home() {
   
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
-      {/* Navigation */}
-      <nav className="flex justify-between items-center px-4 md:px-16 py-4 border-b border-gray-200">
-        <div className="text-2xl font-light">
-          <Link href="/" className="lulo-text">lulo</Link>
-        </div>
-        <div className="flex space-x-6 md:space-x-12 items-center">
-          <Link href="/case-studies" className="text-sm md:text-base hover:underline uppercase">{t('caseStudies')}</Link>
-          <Link href="/contact-us" className="text-sm md:text-base hover:underline uppercase">{t('contactUs')}</Link>
-          <Link href="/about-us" className="text-sm md:text-base hover:underline uppercase">{t('aboutUs')}</Link>
-          <LanguageSwitcher />
-        </div>
-      </nav>
+      <Navigation />
 
       {/* Main Content */}
       <div className="flex flex-col md:flex-row flex-grow">
