@@ -9,15 +9,17 @@ const CaseStudyCard = ({
   title, 
   description, 
   tags, 
-  color 
+  color,
+  award
 }: { 
   title: string; 
   description: string; 
   tags: string[]; 
   color: string;
+  award: string;
 }) => {
   return (
-    <div className="flex flex-col w-full mb-16">
+    <div className="flex flex-col w-full mb-8">
       {/* Placeholder colored div instead of image */}
       <div 
         className="w-full h-96 mb-4 rounded-lg" 
@@ -25,13 +27,14 @@ const CaseStudyCard = ({
         aria-label={`${title} case study thumbnail`}
       />
       
-      <h2 className="text-3xl font-medium mt-4 mb-2">{title}</h2>
+      <div className="text-sm font-medium text-gray-600 mb-1">{award}</div>
+      <h2 className="text-3xl font-medium mt-2 mb-2">{title}</h2>
       
       <p className="text-gray-700 mb-4">
         {description}
       </p>
       
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 mb-4">
         {tags.map((tag, index) => (
           <span 
             key={index} 
@@ -41,6 +44,10 @@ const CaseStudyCard = ({
           </span>
         ))}
       </div>
+      
+      <button className="text-blue-600 font-medium hover:underline self-start">
+        See More
+      </button>
     </div>
   );
 };
@@ -50,28 +57,32 @@ export default function CaseStudies() {
   
   const caseStudies = [
     {
-      title: "Mitra Cakrawala International",
-      description: "MCI Group, a parent company overseeing various subsidiaries in four business sectors, aims to unify its disparate corporate identities under a single symbol that reflects its shared vision.",
-      tags: ["Visual Identity System", "Collateral Design"],
-      color: "#e0e0e0"
+      title: "Vita",
+      description: "Vita is an AI-powered personal health assistant that uses advanced natural language processing to provide personalized wellness recommendations, lifestyle tracking, and intelligent health insights.",
+      tags: ["AI Health Assistant", "Natural Language Processing", "Wellness"],
+      color: "#e0e0e0",
+      award: "Winner (2nd Place) - Redpanda AI Hackathon"
     },
     {
-      title: "Hussel",
-      description: "Hussel Coffee is a cafe located in the heart of Surabaya, within the Kalcer social space. Its proximity to a coworking space makes Hussel an ideal place for work-related activities.",
-      tags: ["Visual Identity System", "Collateral Design", "Signage & Wayfinding"],
-      color: "#333333"
+      title: "Clever",
+      description: "Clever is an iOS educational app powered by AI agents that transform learning through interactive conversations, automated content generation, and intelligent document analysis.",
+      tags: ["iOS App", "Educational Technology", "AI Agents"],
+      color: "#333333",
+      award: "Winner (2nd Place) - TiDB Future App Hackathon"
     },
     {
-      title: "Project Three",
-      description: "A comprehensive branding project for an innovative tech startup focused on sustainable solutions.",
-      tags: ["Brand Strategy", "Digital Design", "UI/UX"],
-      color: "#f5d742"
+      title: "Medivise",
+      description: "Medivise features an intelligent AI agent that acts as a personal wellness assistant, offering lifestyle recommendations, habit tracking, and personalized insights through natural conversation.",
+      tags: ["AI Wellness", "Habit Tracking", "Personalized Insights"],
+      color: "#f5d742",
+      award: "Winner (1st Place) Best AI Innovation - Databricks Generative AI World Cup"
     },
     {
-      title: "Project Four",
-      description: "Redesigning the visual identity for an established company entering new markets and expanding their product line.",
-      tags: ["Rebranding", "Packaging", "Marketing Materials"],
-      color: "#4287f5"
+      title: "Study Buddy",
+      description: "Study Buddy is an AI agent-based application that revolutionizes learning through intelligent document analysis, interactive tutoring, and personalized study plan generation.",
+      tags: ["AI Tutoring", "Document Analysis", "Study Planning"],
+      color: "#4287f5",
+      award: "Winner (3rd Place) - Google x TruEra AI Hackathon"
     }
   ];
 
@@ -81,13 +92,13 @@ export default function CaseStudies() {
       
       <div className="px-8 py-8 pt-8 md:px-12 md:py-12 md:pt-8 lg:px-24 lg:py-24 lg:pt-8 flex-grow">
         <div className="mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sora-text">{t('selectedWorks')}</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 sora-text">{t('caseStudies')}</h1>
           <p className="text-sm md:text-base lg:text-lg text-gray-600 sora-light max-w-xl">
             {t('exploreAISolutions')}
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 mt-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-8">
           {caseStudies.map((study, index) => (
             <CaseStudyCard
               key={index}
@@ -95,6 +106,7 @@ export default function CaseStudies() {
               description={study.description}
               tags={study.tags}
               color={study.color}
+              award={study.award}
             />
           ))}
         </div>
