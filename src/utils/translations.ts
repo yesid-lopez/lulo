@@ -148,9 +148,9 @@ export const translations: Translations = {
     contactUs: 'Kontakt',
     aboutUs: 'Über Uns',
     dedicated: 'Innovation leicht gemacht.',
-    subtitle: 'Fortschrittliche KI-Anwendungen und intelligente Agenten',
+    subtitle: 'Fortschrittliche AI-Anwendungen und intelligente Agenten',
     applyTodayLine1: 'Das nächste große Ding? Es beginnt',
-    applyTodayLine2: 'mit KI—Lass uns reden.',
+    applyTodayLine2: 'mit AI—Lass uns reden.',
     // Contact form translations
     contactHeading: 'Wie können wir helfen, Ihre Ideen zum Leben zu erwecken?',
     contactSubheading: 'Erzählen Sie uns von Ihrem Projekt und wir melden uns bald!',
@@ -166,10 +166,10 @@ export const translations: Translations = {
     selectRange: 'Bereich auswählen ...',
     submit: 'Absenden',
     // Service options
-    aiDevelopment: 'KI-Entwicklung',
+    aiDevelopment: 'AI-Entwicklung',
     mlConsulting: 'Machine Learning Beratung',
     nlpSolutions: 'NLP-Lösungen',
-    customAiAgents: 'Individuelle KI-Agenten',
+    customAiAgents: 'Individuelle AI-Agenten',
     // Timeline options
     urgent: 'Dringend - So schnell wie möglich',
     within1Month: 'Innerhalb eines Monats',
@@ -195,15 +195,15 @@ export const translations: Translations = {
     'description': 'Dies ist ein mehrsprachiges Website-Beispiel',
     // About Us page translations
     meetTheFounders: 'Lernen Sie die Gründer kennen.',
-    foundersDescription: 'Geboren in Kolumbien, wo Innovation auf Leidenschaft trifft. Wir sind Innovatoren, lebenslange Lerner und Kaffeeliebhaber – wir verwandeln komplexe KI in einfache, leistungsstarke Lösungen.',
+    foundersDescription: 'Geboren in Kolumbien, wo Innovation auf Leidenschaft trifft. Wir sind Innovatoren, lebenslange Lerner und Kaffeeliebhaber – wir verwandeln komplexe AI in einfache, leistungsstarke Lösungen.',
     saraName: 'Sara Ortiz Drada',
     saraRole: 'iOS-Entwicklerin',
     yesidName: 'Yesid Leonardo López Sierra',
-    yesidRole: 'KI-Ingenieur',
+    yesidRole: 'AI-Ingenieur',
     linkedin: 'LinkedIn',
     // Case Studies page translations
     selectedWorks: 'Ausgewählte Arbeiten',
-    exploreAISolutions: 'Entdecken Sie unsere innovativen KI-Lösungen und ihre Auswirkungen in der realen Welt.',
+    exploreAISolutions: 'Entdecken Sie unsere innovativen AI-Lösungen und ihre Auswirkungen in der realen Welt.',
     // Footer translations
     theGood: 'Das Gute',
     theBoring: 'Das Langweilige',
