@@ -1,7 +1,5 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
 import { useTranslation } from '../hooks/useTranslation';
 
 const LanguageSwitcher = () => {

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Footer() {
@@ -111,9 +112,11 @@ export default function Footer() {
           <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter absolute bottom-[-1rem] sm:bottom-[-1.25rem] md:bottom-[-2rem] lg:bottom-[-3rem] z-40">
             lulo
           </h1>
-          <img 
+          <Image 
             src="/lulo.png" 
             alt="Lulo Logo" 
+            width={192}
+            height={192}
             className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 absolute bottom-[-3rem] md:bottom-[-4rem] lg:bottom-[-5rem] right-0 z-40" 
           />
         </div>

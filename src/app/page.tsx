@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { useTranslation } from '@/hooks/useTranslation';
+import Image from 'next/image';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -19,7 +20,13 @@ export default function Home() {
             <div className="text-[80px] sm:text-[100px] md:text-[120px] lg:text-[160px] font-light leading-none lulo-text overflow-visible">
               lulo
             </div>
-            <img src="/lulo.png" alt="Lulo Logo" className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-2 md:mb-0 md:mt-2" />
+            <Image 
+              src="/lulo.png" 
+              alt="Lulo Logo" 
+              width={128} 
+              height={128} 
+              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 mx-auto mb-2 md:mb-0 md:mt-2"
+            />
           </div>
         </div>
 

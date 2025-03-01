@@ -122,7 +122,7 @@ export default function ContactUs() {
                   </svg>
                 </div>
                 <h3 className="text-2xl font-bold mb-3 text-gray-800 sora-text">Thanks, We Got It!</h3>
-                <p className="text-gray-600 text-base mb-6 sora-light">Your message is in good hands.<br />We'll be in touch soon!</p>
+                <p className="text-gray-600 text-base mb-6 sora-light">Your message is in good hands.<br />We&apos;ll be in touch soon!</p>
                 <button 
                   onClick={() => setSubmitSuccess(false)}
                   className="px-5 py-2 bg-black text-white text-sm rounded-md hover:bg-gray-800 transition-colors font-medium sora-text hover:shadow-md"
