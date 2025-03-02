@@ -3,6 +3,7 @@ import PlausibleProvider from "next-plausible";
 import { Poppins, Sora } from "next/font/google";
 import { TranslationProvider } from "../hooks/TranslationProvider";
 import "./globals.css";
+import Script from "next/script";
 
 // Initialize the Poppins font
 const poppins = Poppins({
@@ -23,7 +24,7 @@ const sora = Sora({
 export const metadata: Metadata = {
   title: "lulo - Innovation Made Simple",
   description:
-    "How can we help bring your ideas to life? Share your vision with us, and we’ll get back to you shortly with AI-powered solutions designed for impact.",
+    "How can we help bring your ideas to life? Share your vision with us, and we'll get back to you shortly with AI-powered solutions designed for impact.",
   icons: {
     icon: "/lulo.png",
   },
@@ -36,6 +37,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.variable} ${sora.variable}`}>
+      <Script
+        defer
+        src="https://umami.yesidlopez.de/umami"
+        data-website-id="c000d1f0-5275-405d-9270-b2c966910539"
+      />
       <PlausibleProvider
         domain="luloai.com"
         customDomain="https://plausible-analytics.yesidlopez.de"
