@@ -33,17 +33,16 @@ export default function Home() {
         {/* Right Column */}
         <div className="w-full md:w-2/3 flex flex-col justify-center p-4 sm:p-8 md:p-12 lg:p-16">
           <div className="max-w-xl mx-auto md:mx-0">
-            <h1 className="text-8xl sm:text-7xl md:text-7xl lg:text-8xl font-bold mb-8">Innovation Made Simple.</h1>
-            <p className="text-5xl sm:text-4xl md:text-4xl mb-12">Advanced AI Applications and Intelligent Agents</p>
-            
-            <p className="text-4xl sm:text-3xl md:text-3xl max-w-2xl mb-10">
-              The next big thing? It starts
-              with AI—Let's talk.
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light leading-tight sora-text">
+              {t('dedicated')}
+            </h1>
+            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-1 sm:mt-2 mb-2 sm:mb-4 sora-light">
+              {t('subtitle')}
             </p>
-            <div className="mt-6 sm:mt-6">
+            <div className="mt-1 sm:mt-2">
               <Link 
                 href="/contact-us" 
-                className="text-black text-2xl sm:text-xl md:text-xl hover:underline transition duration-300 block sora-light"
+                className="text-black text-sm sm:text-base md:text-lg hover:underline transition duration-300 block sora-light"
               >
                 <span>{t('applyTodayLine1')}</span>
                 <br />
