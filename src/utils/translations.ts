@@ -73,6 +73,7 @@ export const translations: Translations = {
     termsOfService: 'Terms of Service',
     cookiePolicy: 'Cookie Policy',
     copyright: '© 2024 lulo. All rights reserved.',
+    seeMore: 'See More',
   },
   es: {
     caseStudies: 'Casos de Estudio',
@@ -142,6 +143,7 @@ export const translations: Translations = {
     termsOfService: 'Términos de Servicio',
     cookiePolicy: 'Política de Cookies',
     copyright: '© 2024 lulo. Todos los derechos reservados.',
+    seeMore: 'Ver Más',
   },
   de: {
     caseStudies: 'Fallstudien',
@@ -211,6 +213,7 @@ export const translations: Translations = {
     termsOfService: 'Nutzungsbedingungen',
     cookiePolicy: 'Cookie-Richtlinie',
     copyright: '© 2024 lulo. Alle Rechte vorbehalten.',
+    seeMore: 'Mehr Sehen',
   },
 };
 
