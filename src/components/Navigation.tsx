@@ -11,7 +11,7 @@ export default function Navigation() {
   const { t } = useTranslation();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [headerHeight, setHeaderHeight] = useState(73); // Default height
+  const [, setHeaderHeight] = useState(73); // Default height
   
   useEffect(() => {
     // Function to measure and update header height
