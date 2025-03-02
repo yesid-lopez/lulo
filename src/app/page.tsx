@@ -4,9 +4,24 @@ import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import { useTranslation } from '@/hooks/useTranslation';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
   const { t } = useTranslation();
+  const [isPortrait, setIsPortrait] = useState(false);
+  
+  useEffect(() => {
+    // Check initial orientation
+    setIsPortrait(window.innerHeight > window.innerWidth);
+    
+    // Add listener for orientation changes
+    const handleResize = () => {
+      setIsPortrait(window.innerHeight > window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
@@ -33,16 +48,28 @@ export default function Home() {
         {/* Right Column */}
         <div className="w-full md:w-2/3 flex flex-col justify-center p-4 sm:p-8 md:p-12 lg:p-16">
           <div className="max-w-xl mx-auto md:mx-0">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-light leading-tight sora-text">
+            <h1 className={`font-light leading-tight sora-text ${
+              isPortrait 
+                ? "text-3xl sm:text-4xl md:text-4xl lg:text-5xl" 
+                : "text-xl sm:text-2xl md:text-3xl lg:text-5xl"
+            }`}>
               {t('dedicated')}
             </h1>
-            <p className="text-xs sm:text-sm md:text-base text-gray-600 mt-1 sm:mt-2 mb-2 sm:mb-4 sora-light">
+            <p className={`text-gray-600 sora-light ${
+              isPortrait 
+                ? "text-base sm:text-lg md:text-lg mt-3 mb-4" 
+                : "text-xs sm:text-sm md:text-base mt-1 sm:mt-2 mb-2 sm:mb-4"
+            }`}>
               {t('subtitle')}
             </p>
-            <div className="mt-1 sm:mt-2">
+            <div className={isPortrait ? "mt-4" : "mt-1 sm:mt-2"}>
               <Link 
                 href="/contact-us" 
-                className="text-black text-sm sm:text-base md:text-lg hover:underline transition duration-300 block sora-light"
+                className={`text-black hover:underline transition duration-300 block sora-light ${
+                  isPortrait 
+                    ? "text-lg sm:text-xl md:text-xl" 
+                    : "text-sm sm:text-base md:text-lg"
+                }`}
               >
                 <span>{t('applyTodayLine1')}</span>
                 <br />
