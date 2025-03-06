@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import PlausibleProvider from "next-plausible";
 import { Poppins, Sora } from "next/font/google";
 import { TranslationProvider } from "../hooks/TranslationProvider";
 import "./globals.css";
@@ -35,21 +34,20 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isProd = process.env.NODE_ENV === "production";
+
   return (
     <html lang="en" className={`${poppins.variable} ${sora.variable}`}>
-      <Script
-        defer
-        src="https://umami.yesidlopez.de/umami"
-        data-website-id="c000d1f0-5275-405d-9270-b2c966910539"
-      />
-      <PlausibleProvider
-        domain="luloai.com"
-        customDomain="https://plausible-analytics.yesidlopez.de"
-      >
-        <body suppressHydrationWarning={true}>
-          <TranslationProvider>{children}</TranslationProvider>
-        </body>
-      </PlausibleProvider>
+      {isProd && (
+        <Script
+          defer
+          src="https://umami.yesidlopez.de/umami"
+          data-website-id="c000d1f0-5275-405d-9270-b2c966910539"
+        />
+      )}
+      <body suppressHydrationWarning={true}>
+        <TranslationProvider>{children}</TranslationProvider>
+      </body>
     </html>
   );
 }
