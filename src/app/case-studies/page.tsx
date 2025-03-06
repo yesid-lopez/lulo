@@ -5,27 +5,38 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { caseStudiesData, type CaseStudy } from '@/utils/caseStudiesData';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const CaseStudyCard = ({ 
   title, 
   description, 
   tags, 
   color,
-  award
+  award,
+  image,
+  link
 }: CaseStudy) => {
   const { t } = useTranslation();
   
   return (
     <div className="flex flex-col w-full mb-8">
-      {/* Placeholder colored div instead of image */}
-      <div 
-        className="w-full h-96 mb-4 rounded-lg" 
-        style={{ backgroundColor: color }}
-        aria-label={`${title} case study thumbnail`}
-      />
+      {/* Case study image */}
+      <Link href={link} className="block w-full h-96 mb-4 rounded-lg overflow-hidden relative">
+        <Image 
+          src={image} 
+          alt={`${title} case study`}
+          fill
+          className="object-cover transition-transform duration-300 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, 50vw"
+          priority
+        />
+      </Link>
       
       <div className="text-sm font-medium text-gray-600 mb-1">{award}</div>
-      <h2 className="text-3xl font-medium mt-2 mb-2">{title}</h2>
+      <Link href={link}>
+        <h2 className="text-3xl font-medium mt-2 mb-2 hover:text-blue-600 transition-colors">{title}</h2>
+      </Link>
       
       <p className="text-gray-700 mb-4">
         {description}
@@ -42,9 +53,12 @@ const CaseStudyCard = ({
         ))}
       </div>
       
-      <button className="text-blue-600 font-medium hover:underline self-start">
+      <Link 
+        href={link} 
+        className="text-blue-600 font-medium hover:underline self-start"
+      >
         {t('seeMore')}
-      </button>
+      </Link>
     </div>
   );
 };
@@ -71,11 +85,7 @@ export default function CaseStudies() {
           {caseStudies.map((study, index) => (
             <CaseStudyCard
               key={index}
-              title={study.title}
-              description={study.description}
-              tags={study.tags}
-              color={study.color}
-              award={study.award}
+              {...study}
             />
           ))}
         </div>
