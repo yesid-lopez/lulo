@@ -1,104 +1,21 @@
 'use client';
 
 import { useTranslation } from '@/hooks/useTranslation';
-import { useState } from 'react';
+import { useContactForm } from '@/hooks/useContactForm';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 
 export default function ContactUs() {
   const { t } = useTranslation();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    service: '',
-    message: ''
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState('');
-  const [submitSuccess, setSubmitSuccess] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitError('');
-    setSubmitSuccess(false);
-    
-    try {
-      // Format the service name for better readability
-      const getServiceName = () => {
-        switch(formData.service) {
-          case 'ai-development': return 'AI Development';
-          case 'ml-consulting': return 'Machine Learning Consulting';
-          case 'nlp-solutions': return 'NLP Solutions';
-          case 'custom-ai-agents': return 'Custom AI Agents';
-          default: return 'General Inquiry';
-        }
-      };
-      
-      // Create the email content with improved formatting
-      const emailContent = {
-        ...formData,
-        _replyto: formData.email,
-        _subject: `Lulo AI Contact: ${getServiceName()} - ${formData.name}`,
-        _cc: 'yesidlopez@luloai.com'
-      };
-      
-      // Log the email content to console for testing
-      console.log('Form submission data:', emailContent);
-      console.log('Name:', formData.name);
-      console.log('Email:', formData.email);
-      console.log('Company:', formData.company || 'Not provided');
-      console.log('Service:', getServiceName());
-      console.log('Message:', formData.message);
-      
-      // TEMPORARILY COMMENTED: Actual form submission
-      /*
-      const response = await fetch('https://formspree.io/f/mrbenkgz', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...formData,
-          _replyto: formData.email,
-          _subject: `Lulo AI Contact: ${getServiceName()} - ${formData.name}`,
-          // Remove the formattedMessage field to simplify the email
-          _cc: 'yesidlopez@luloai.com'
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-      */
-      
-      // Simulate successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Show success message
-      setSubmitSuccess(true);
-      
-      // Reset the form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        service: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setSubmitError(t('errorMessage') || 'There was an error sending your message. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const { 
+    formData, 
+    isSubmitting, 
+    submitError, 
+    submitSuccess, 
+    handleChange, 
+    handleSubmit, 
+    setSubmitSuccess 
+  } = useContactForm();
   
   return (
     <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
