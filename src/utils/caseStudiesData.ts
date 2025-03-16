@@ -21,7 +21,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#e0e0e0",
       award: "Winner (2nd Place) - Redpanda AI Hackathon",
       image: "/case_studies/vita.png",
-      link: "/case-studies/vita"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_the-future-is-not-gonna-be-built-in-batches-activity-7265122984590290944-3qGg?utm_source=share&utm_medium=member_desktop"
     },
     {
       title: "Clever",
@@ -30,7 +30,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#333333",
       award: "Winner (2nd Place) - TiDB Future App Hackathon",
       image: "/case_studies/clever.png",
-      link: "/case-studies/clever"
+      link: "https://devpost.com/software/clever"
     },
     {
       title: "Medivise",
@@ -39,7 +39,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#f5d742",
       award: "Winner (1st Place) Best AI Innovation - Databricks Generative AI World Cup",
       image: "/case_studies/medivise.png",
-      link: "/case-studies/medivise"
+      link: "https://devpost.com/software/medivise"
     },
     {
       title: "Study Buddy",
@@ -48,7 +48,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#4287f5",
       award: "Winner (3rd Place) - Google x TruEra AI Hackathon",
       image: "/case_studies/study-buddy.png",
-      link: "/case-studies/study-buddy"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_teamwork-innovation-hackathonsuccess-activity-7143566767397801984-Pvr_?utm_source=share&utm_medium=member_desktop"
     }
   ],
   es: [
@@ -59,7 +59,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#e0e0e0",
       award: "Ganador (2º Lugar) - Hackathon Redpanda AI",
       image: "/case_studies/vita.png",
-      link: "/case-studies/vita"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_the-future-is-not-gonna-be-built-in-batches-activity-7265122984590290944-3qGg?utm_source=share&utm_medium=member_desktop"
     },
     {
       title: "Clever",
@@ -68,7 +68,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#333333",
       award: "Ganador (2º Lugar) - Hackathon TiDB Future App",
       image: "/case_studies/clever.png",
-      link: "/case-studies/clever"
+      link: "https://devpost.com/software/clever"
     },
     {
       title: "Medivise",
@@ -77,7 +77,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#f5d742",
       award: "Ganador (1er Lugar) Mejor Innovación en IA - Copa Mundial de IA Generativa de Databricks",
       image: "/case_studies/medivise.png",
-      link: "/case-studies/medivise"
+      link: "https://devpost.com/software/medivise"
     },
     {
       title: "Study Buddy",
@@ -86,7 +86,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#4287f5",
       award: "Ganador (3er Lugar) - Hackathon Google x TruEra AI",
       image: "/case_studies/study-buddy.png",
-      link: "/case-studies/study-buddy"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_teamwork-innovation-hackathonsuccess-activity-7143566767397801984-Pvr_?utm_source=share&utm_medium=member_desktop"
     }
   ],
   de: [
@@ -97,7 +97,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#e0e0e0",
       award: "Gewinner (2. Platz) - Redpanda AI Hackathon",
       image: "/case_studies/vita.png",
-      link: "/case-studies/vita"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_the-future-is-not-gonna-be-built-in-batches-activity-7265122984590290944-3qGg?utm_source=share&utm_medium=member_desktop"
     },
     {
       title: "Clever",
@@ -106,7 +106,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#333333",
       award: "Gewinner (2. Platz) - TiDB Future App Hackathon",
       image: "/case_studies/clever.png",
-      link: "/case-studies/clever"
+      link: "https://devpost.com/software/clever"
     },
     {
       title: "Medivise",
@@ -115,7 +115,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#f5d742",
       award: "Gewinner (1. Platz) Beste KI-Innovation - Databricks Generative AI World Cup",
       image: "/case_studies/medivise.png",
-      link: "/case-studies/medivise"
+      link: "https://devpost.com/software/medivise"
     },
     {
       title: "Study Buddy",
@@ -124,7 +124,7 @@ export const caseStudiesData: CaseStudiesData = {
       color: "#4287f5",
       award: "Gewinner (3. Platz) - Google x TruEra AI Hackathon",
       image: "/case_studies/study-buddy.png",
-      link: "/case-studies/study-buddy"
+      link: "https://www.linkedin.com/posts/yesid-lopez-sierra_teamwork-innovation-hackathonsuccess-activity-7143566767397801984-Pvr_?utm_source=share&utm_medium=member_desktop"
     }
   ]
 }; 

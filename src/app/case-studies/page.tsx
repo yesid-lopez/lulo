@@ -6,7 +6,6 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { caseStudiesData, type CaseStudy } from '@/utils/caseStudiesData';
 import Image from 'next/image';
-import Link from 'next/link';
 
 const CaseStudyCard = ({ 
   title, 
@@ -21,7 +20,12 @@ const CaseStudyCard = ({
   return (
     <div className="flex flex-col w-full mb-8">
       {/* Case study image */}
-      <Link href={link} className="block w-full h-96 mb-4 rounded-lg overflow-hidden relative">
+      <a 
+        href={link} 
+        className="block w-full h-96 mb-4 rounded-lg overflow-hidden relative"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         <Image 
           src={image} 
           alt={`${title} case study`}
@@ -30,12 +34,16 @@ const CaseStudyCard = ({
           sizes="(max-width: 768px) 100vw, 50vw"
           priority
         />
-      </Link>
+      </a>
       
       <div className="text-sm font-medium text-gray-600 mb-1">{award}</div>
-      <Link href={link}>
+      <a 
+        href={link}
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
         <h2 className="text-3xl font-medium mt-2 mb-2 hover:text-blue-600 transition-colors">{title}</h2>
-      </Link>
+      </a>
       
       <p className="text-gray-700 mb-4">
         {description}
@@ -52,12 +60,14 @@ const CaseStudyCard = ({
         ))}
       </div>
       
-      <Link 
+      <a 
         href={link} 
         className="text-blue-600 font-medium hover:underline self-start"
+        target="_blank" 
+        rel="noopener noreferrer"
       >
         {t('seeMore')}
-      </Link>
+      </a>
     </div>
   );
 };
