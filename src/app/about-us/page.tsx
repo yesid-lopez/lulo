@@ -4,6 +4,7 @@ import { useTranslation } from '@/hooks/useTranslation';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import Image from 'next/image';
 
 export default function AboutUs() {
   const { t } = useTranslation();
@@ -28,8 +29,14 @@ export default function AboutUs() {
           <div className="flex flex-col space-y-12">
             {/* Sara's Card */}
             <div className="overflow-hidden flex flex-col items-start text-left">
-              <div className="relative w-40 h-40 mb-6 overflow-hidden bg-amber-200">
-                {/* Color block instead of image */}
+              <div className="relative w-40 h-40 mb-6 overflow-hidden rounded-md">
+                <Image 
+                  src="/sara.jpeg" 
+                  alt="Sara Drada" 
+                  width={160} 
+                  height={160} 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <h2 className="text-2xl font-bold mb-1 sora-text text-black">{t('saraName')}</h2>
               <p className="text-lg mb-2 sora-light text-black">
@@ -50,8 +57,14 @@ export default function AboutUs() {
 
             {/* Yesid's Card */}
             <div className="overflow-hidden flex flex-col items-start text-left">
-              <div className="relative w-40 h-40 mb-6 overflow-hidden bg-blue-200">
-                {/* Color block instead of image */}
+              <div className="relative w-40 h-40 mb-6 overflow-hidden rounded-md">
+                <Image 
+                  src="/yesid.jpeg" 
+                  alt="Yesid Lopez" 
+                  width={160} 
+                  height={160} 
+                  className="object-cover w-full h-full"
+                />
               </div>
               <h2 className="text-2xl font-bold mb-1 sora-text text-black">{t('yesidName')}</h2>
               <p className="text-lg mb-2 sora-light text-black">
