@@ -12,7 +12,6 @@ const CaseStudyCard = ({
   title, 
   description, 
   tags, 
-  color,
   award,
   image,
   link
