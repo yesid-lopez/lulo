@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'case-studies': CaseStudy;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -77,6 +78,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -158,6 +160,128 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies".
+ */
+export interface CaseStudy {
+  id: number;
+  /**
+   * Name of the app/project (e.g., "Vita", "Clever")
+   */
+  title: string;
+  /**
+   * URL-friendly version of the title
+   */
+  slug: string;
+  /**
+   * Brief description of the project and its purpose
+   */
+  description: string;
+  category: 'health-wellness' | 'education' | 'finance' | 'technology' | 'ecommerce' | 'entertainment' | 'other';
+  award?: {
+    /**
+     * Award title (e.g., "Winner (2nd Place)")
+     */
+    title?: string | null;
+    /**
+     * Event name (e.g., "Redpanda AI Hackathon")
+     */
+    event?: string | null;
+    position?: ('first' | 'second' | 'third' | 'finalist' | 'participant') | null;
+  };
+  /**
+   * List of key features with descriptions
+   */
+  keyFeatures: {
+    /**
+     * Feature number (e.g., "01", "02")
+     */
+    number: string;
+    /**
+     * Feature title (e.g., "Real-Time Glucose Monitoring")
+     */
+    title: string;
+    /**
+     * Detailed description of the feature
+     */
+    description: string;
+    id?: string | null;
+  }[];
+  /**
+   * Technologies used in the project
+   */
+  technologies?:
+    | {
+        name: string;
+        category?: ('framework' | 'language' | 'database' | 'tool' | 'service' | 'platform') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Tags for categorization (e.g., "AI Health Assistant", "iOS App")
+   */
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  images?: {
+    /**
+     * Main hero image showcasing the project
+     */
+    hero?: (number | null) | Media;
+    /**
+     * Additional mockups or screenshots
+     */
+    mockups?:
+      | {
+          image: number | Media;
+          /**
+           * Optional caption for the image
+           */
+          caption?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  links?: {
+    /**
+     * Link to live demo or app store
+     */
+    demo?: string | null;
+    /**
+     * GitHub repository URL
+     */
+    github?: string | null;
+    /**
+     * Project website URL
+     */
+    website?: string | null;
+    /**
+     * Additional links (documentation, case study, etc.)
+     */
+    other?:
+      | {
+          label: string;
+          url: string;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  status: 'draft' | 'published' | 'archived';
+  /**
+   * Mark as featured case study
+   */
+  featured?: boolean | null;
+  /**
+   * When the project was completed
+   */
+  completionDate?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -170,6 +294,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'case-studies';
+        value: number | CaseStudy;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -252,6 +380,75 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "case-studies_select".
+ */
+export interface CaseStudiesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  category?: T;
+  award?:
+    | T
+    | {
+        title?: T;
+        event?: T;
+        position?: T;
+      };
+  keyFeatures?:
+    | T
+    | {
+        number?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  technologies?:
+    | T
+    | {
+        name?: T;
+        category?: T;
+        id?: T;
+      };
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  images?:
+    | T
+    | {
+        hero?: T;
+        mockups?:
+          | T
+          | {
+              image?: T;
+              caption?: T;
+              id?: T;
+            };
+      };
+  links?:
+    | T
+    | {
+        demo?: T;
+        github?: T;
+        website?: T;
+        other?:
+          | T
+          | {
+              label?: T;
+              url?: T;
+              id?: T;
+            };
+      };
+  status?: T;
+  featured?: T;
+  completionDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
