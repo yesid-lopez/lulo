@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CmsCaseStudiesShowcase from '@/components/CmsCaseStudiesShowcase';
 import { caseStudiesData, type CaseStudy } from '@/utils/caseStudiesData';
 import Image from 'next/image';
 
@@ -90,7 +91,9 @@ export default function CaseStudies() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-8">
+        <CmsCaseStudiesShowcase />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-16">
           {caseStudies.map((study, index) => (
             <CaseStudyCard
               key={index}
