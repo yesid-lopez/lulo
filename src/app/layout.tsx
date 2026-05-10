@@ -42,7 +42,7 @@ export default function RootLayout({
         <Script
           defer
           src="https://umami.yesidlopez.de/umami"
-          data-website-id="7c747a8f-b54b-4694-88ee-f3effbbf48cf"
+          data-website-id="61e825b7-f77b-49e5-a284-8338b1059e31"
         />
       )}
       <body suppressHydrationWarning={true}>
