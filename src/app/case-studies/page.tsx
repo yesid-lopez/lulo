@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CmsCaseStudiesShowcase from '@/components/CmsCaseStudiesShowcase';
 import { caseStudiesData, type CaseStudy } from '@/utils/caseStudiesData';
 import Image from 'next/image';
 
@@ -98,6 +99,8 @@ export default function CaseStudies() {
             />
           ))}
         </div>
+
+        <CmsCaseStudiesShowcase />
       </div>
       
       <Footer />
