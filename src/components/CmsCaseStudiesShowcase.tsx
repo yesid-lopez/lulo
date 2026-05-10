@@ -58,7 +58,7 @@ export default function CmsCaseStudiesShowcase() {
   }
 
   return (
-    <section className="mt-20">
+    <section className="mt-10">
       <div className="mb-8 max-w-3xl">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">
           Product showcase

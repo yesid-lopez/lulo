@@ -91,7 +91,9 @@ export default function CaseStudies() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-8">
+        <CmsCaseStudiesShowcase />
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 mt-16">
           {caseStudies.map((study, index) => (
             <CaseStudyCard
               key={index}
@@ -99,8 +101,6 @@ export default function CaseStudies() {
             />
           ))}
         </div>
-
-        <CmsCaseStudiesShowcase />
       </div>
       
       <Footer />
