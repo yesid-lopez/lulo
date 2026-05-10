@@ -36,7 +36,7 @@ export default function WouldYouRatherPrivacy() {
             <section>
               <h2 className="text-2xl font-semibold mb-4 sora-text">1. Information We Collect</h2>
               <p className="mb-4 sora-light leading-relaxed">
-                The app is designed to provide you with entertaining "Would You Rather" questions and choices in a fun and engaging way. To provide this experience, <strong>we do not require you to create an account</strong> and we do not collect personal information such as your name, email address, or phone number.
+                The app is designed to provide you with entertaining &quot;Would You Rather&quot; questions and choices in a fun and engaging way. To provide this experience, <strong>we do not require you to create an account</strong> and we do not collect personal information such as your name, email address, or phone number.
               </p>
               <p className="mb-4 sora-light leading-relaxed">
                 However, we may collect the following non-personal information:
