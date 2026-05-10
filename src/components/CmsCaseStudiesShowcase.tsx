@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { cmsCaseStudiesData, type CmsCaseStudy } from '@/utils/cmsCaseStudiesData';
 
@@ -9,6 +10,7 @@ const CmsCaseStudyCard = ({
   category,
   tags,
   highlights,
+  mockups,
 }: CmsCaseStudy) => {
   return (
     <Link
@@ -26,6 +28,30 @@ const CmsCaseStudyCard = ({
           {title}
         </h2>
         <p className="mb-6 text-base leading-7 text-gray-600">{summary}</p>
+
+        {mockups.length > 0 ? (
+          <div className="mb-6 overflow-hidden rounded-3xl bg-[#111111] px-5 pt-6">
+            <div className="flex min-h-64 items-end justify-center gap-3 sm:gap-5">
+              {mockups.slice(0, 3).map((mockup, index) => (
+                <div
+                  key={mockup.src}
+                  className={`w-24 shrink-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-gray-900 shadow-2xl sm:w-32 ${
+                    index === 1 ? 'translate-y-0' : 'translate-y-8'
+                  }`}
+                >
+                  <Image
+                    src={mockup.src}
+                    alt={mockup.alt}
+                    width={600}
+                    height={1299}
+                    className="h-auto w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         <div className="mb-6 grid gap-3 sm:grid-cols-3">
           {highlights.map((highlight) => (

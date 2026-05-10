@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
@@ -85,6 +86,30 @@ export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPagePr
             ))}
           </div>
         </section>
+
+        {study.mockups.length > 0 ? (
+          <section className="mt-12 overflow-hidden rounded-3xl bg-white p-6 shadow-sm md:p-10">
+            <div className="mb-8 max-w-2xl">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">App mockups</p>
+              <h2 className="text-2xl font-semibold text-gray-950 md:text-4xl">Product experience</h2>
+            </div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {study.mockups.map((mockup) => (
+                <div key={mockup.src} className="rounded-[2rem] bg-[#111111] p-3 shadow-lg">
+                  <Image
+                    src={mockup.src}
+                    alt={mockup.alt}
+                    width={600}
+                    height={1299}
+                    className="h-auto w-full rounded-[1.4rem] object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
 
         <section className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {study.features.map((feature) => (

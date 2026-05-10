@@ -9,6 +9,11 @@ export type CmsCaseStudyLink = {
   url: string;
 };
 
+export type CmsCaseStudyMockup = {
+  src: string;
+  alt: string;
+};
+
 export type CmsCaseStudy = {
   title: string;
   slug: string;
@@ -19,6 +24,7 @@ export type CmsCaseStudy = {
   status: string;
   tags: string[];
   highlights: string[];
+  mockups: CmsCaseStudyMockup[];
   features: CmsCaseStudyFeature[];
   links: CmsCaseStudyLink[];
 };
@@ -36,6 +42,24 @@ export const cmsCaseStudiesData: CmsCaseStudy[] = [
     status: 'Published',
     tags: ['iOS App', 'Citizenship Test', 'Education', 'Test Preparation', 'Multilingual'],
     highlights: ['310+ official questions', '10 supported languages', 'Offline study experience'],
+    mockups: [
+      {
+        src: '/case_studies/deu-leben-in-deutschland-2026/home.jpg',
+        alt: 'DEU Leben in Deutschland app home screen',
+      },
+      {
+        src: '/case_studies/deu-leben-in-deutschland-2026/study-mode.jpg',
+        alt: 'DEU Leben in Deutschland app study mode screen',
+      },
+      {
+        src: '/case_studies/deu-leben-in-deutschland-2026/quiz.jpg',
+        alt: 'DEU Leben in Deutschland app quiz screen',
+      },
+      {
+        src: '/case_studies/deu-leben-in-deutschland-2026/progress.jpg',
+        alt: 'DEU Leben in Deutschland app progress screen',
+      },
+    ],
     features: [
       {
         number: '01',
