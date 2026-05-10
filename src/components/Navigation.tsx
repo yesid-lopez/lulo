@@ -45,8 +45,8 @@ export default function Navigation() {
   }, [pathname]);
   
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#F5F5F5]">
-      <nav className="flex justify-between items-center px-4 md:px-16 py-4 border-b border-gray-200 h-[73px] max-w-[1920px] mx-auto relative z-50">
+    <header className="sticky top-0 z-50 w-full bg-[#F5F5F5] text-gray-950">
+      <nav className="flex justify-between items-center px-4 md:px-16 py-4 border-b border-gray-300 h-[73px] max-w-[1920px] mx-auto relative z-50">
         <div className="text-2xl font-light">
           <Link href="/" className="lulo-text">lulo</Link>
         </div>
@@ -57,9 +57,9 @@ export default function Navigation() {
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
-          <span className="block w-6 h-0.5 bg-black"></span>
-          <span className="block w-6 h-0.5 bg-black my-1"></span>
-          <span className="block w-6 h-0.5 bg-black"></span>
+          <span className="block w-6 h-0.5 bg-gray-950"></span>
+          <span className="block w-6 h-0.5 bg-gray-950 my-1"></span>
+          <span className="block w-6 h-0.5 bg-gray-950"></span>
         </button>
         
         {/* Desktop Navigation */}
@@ -100,7 +100,7 @@ export default function Navigation() {
       <div className="md:hidden">
         {/* Mobile Menu Overlay */}
         <div 
-          className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-black/50 z-40 transition-opacity duration-300 ${
             isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
           onClick={closeMenu}
@@ -108,12 +108,12 @@ export default function Navigation() {
         
         {/* Mobile Menu Panel - full screen approach */}
         <div 
-          className={`fixed top-0 right-0 w-[calc(100%-80px)] h-screen bg-[#F5F5F5] z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
+          className={`fixed top-0 right-0 w-[calc(100%-80px)] h-screen bg-[#F5F5F5] text-gray-950 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col ${
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           {/* Menu Header with Close Button */}
-          <div className="h-[73px] border-b border-gray-200 flex items-center justify-between px-4 md:px-16 bg-[#F5F5F5]">
+          <div className="h-[73px] border-b border-gray-300 flex items-center justify-between px-4 md:px-16 bg-[#F5F5F5] text-gray-950">
             <div className="text-2xl font-light">
               <Link href="/" className="lulo-text" onClick={closeMenu}>lulo</Link>
             </div>
@@ -156,7 +156,7 @@ export default function Navigation() {
             >
               {t('aboutUs')}
             </Link>
-            <div className="pt-4 border-t border-gray-200">
+            <div className="pt-4 border-t border-gray-300">
               <LanguageSwitcher />
             </div>
           </div>
