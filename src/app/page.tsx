@@ -24,13 +24,13 @@ export default function Home() {
   }, []);
   
   return (
-    <div className="min-h-screen bg-[#F5F5F5] flex flex-col">
+    <div className="min-h-screen bg-[#F5F5F5] text-gray-950 flex flex-col">
       <Navigation />
 
       {/* Main Content */}
       <div className="flex flex-col md:flex-row flex-grow">
         {/* Left Column */}
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-200">
+        <div className="w-full md:w-1/3 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 border-b md:border-b-0 md:border-r border-gray-300">
           <div className="text-center flex flex-col-reverse md:flex-col">
             <div className="text-[80px] sm:text-[100px] md:text-[120px] lg:text-[160px] font-light leading-none lulo-text overflow-visible">
               lulo
