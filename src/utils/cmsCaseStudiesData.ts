@@ -13,10 +13,12 @@ export type CmsCaseStudy = {
   title: string;
   slug: string;
   eyebrow: string;
+  summary: string;
   description: string;
   category: string;
   status: string;
   tags: string[];
+  highlights: string[];
   features: CmsCaseStudyFeature[];
   links: CmsCaseStudyLink[];
 };
@@ -25,12 +27,15 @@ export const cmsCaseStudiesData: CmsCaseStudy[] = [
   {
     title: 'DEU: Leben in Deutschland 2026',
     slug: 'deu-leben-in-deutschland-2026',
-    eyebrow: 'CMS case study',
+    eyebrow: 'iOS Learning Platform',
+    summary:
+      'German citizenship test preparation app with 310+ official questions, exam simulation, and multilingual study support.',
     description:
       'A comprehensive iOS learning platform for the German citizenship test (Einbürgerungstest / Leben in Deutschland). Covers all 310+ official questions across the 16 Bundesländer with detailed explanations and legal context, multiple study modes, exam simulation, and multilingual support across 10 languages.',
     category: 'Education',
     status: 'Published',
     tags: ['iOS App', 'Citizenship Test', 'Education', 'Test Preparation', 'Multilingual'],
+    highlights: ['310+ official questions', '10 supported languages', 'Offline study experience'],
     features: [
       {
         number: '01',
@@ -87,3 +92,7 @@ export const cmsCaseStudiesData: CmsCaseStudy[] = [
     ],
   },
 ];
+
+export function getCmsCaseStudyBySlug(slug: string) {
+  return cmsCaseStudiesData.find((study) => study.slug === slug);
+}
