@@ -94,9 +94,9 @@ export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPagePr
               <h2 className="text-2xl font-semibold text-gray-950 md:text-4xl">Product experience</h2>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {study.mockups.map((mockup) => (
-                <div key={mockup.src} className="rounded-[2rem] bg-[#111111] p-3 shadow-lg">
+                <div key={mockup.src} className="w-full max-w-[18rem] rounded-[2rem] bg-[#111111] p-3 shadow-lg sm:max-w-none">
                   <Image
                     src={mockup.src}
                     alt={mockup.alt}
