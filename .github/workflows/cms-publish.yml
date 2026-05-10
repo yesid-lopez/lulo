@@ -26,7 +26,8 @@ jobs:
       - name: Compute image tag
         id: tag
         run: |
-          TAG="v$(date -u +%Y%m%d.%H%M%S).${GITHUB_SHA::7}"
+          COMMIT_TS=$(TZ=UTC git show -s --format=%cd --date=format-local:%Y%m%d.%H%M%S HEAD)
+          TAG="v${COMMIT_TS}.${GITHUB_SHA::7}"
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "Tag: $TAG"
 
