@@ -51,3 +51,5 @@ node_modules/
 
 # pnpm 
 .pnpm-store/
+
+.claude/settings.local.json
