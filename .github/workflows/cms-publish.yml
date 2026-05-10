@@ -1,16 +1,18 @@
 name: cms-publish
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'cms/**'
-      - '.github/workflows/cms-publish.yml'
+  release:
+    types:
+      - published
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to publish, e.g. cms-v1.2.3'
+        required: true
+        type: string
 
 concurrency:
-  group: cms-publish-${{ github.ref }}
+  group: cms-publish-${{ github.event.release.tag_name || inputs.tag }}
   cancel-in-progress: false
 
 jobs:
@@ -19,17 +21,21 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Compute image tag
+      - name: Resolve release tag
         id: tag
         run: |
-          COMMIT_TS=$(TZ=UTC git show -s --format=%cd --date=format-local:%Y%m%d.%H%M%S HEAD)
-          TAG="v${COMMIT_TS}.${GITHUB_SHA::7}"
+          TAG="${{ github.event.release.tag_name || inputs.tag }}"
+          if ! echo "$TAG" | grep -Eq '^cms-v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Invalid tag '$TAG'. Expected format: cms-vX.Y.Z, e.g. cms-v1.2.3" >&2
+            exit 1
+          fi
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
           echo "Tag: $TAG"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.tag.outputs.tag }}
+          fetch-depth: 1
 
       - uses: docker/setup-qemu-action@v3
 
