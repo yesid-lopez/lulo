@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Poppins, Sora } from "next/font/google";
 import { TranslationProvider } from "../hooks/TranslationProvider";
 import "./globals.css";
 import Script from "next/script";
+import { createPageMetadata, siteName, siteUrl } from "@/lib/seo";
 
 // Initialize the Poppins font
 const poppins = Poppins({
@@ -21,12 +22,29 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "lulo - Innovation Made Simple",
-  description:
-    "How can we help bring your ideas to life? Share your vision with us, and we'll get back to you shortly with AI-powered solutions designed for impact.",
+  metadataBase: siteUrl,
+  ...createPageMetadata(),
+  applicationName: siteName,
+  keywords: [
+    "lulo",
+    "AI development",
+    "machine learning consulting",
+    "AI agents",
+    "product innovation",
+    "automation",
+  ],
+  authors: [{ name: "lulo" }],
+  creator: "lulo",
+  publisher: "lulo",
+  category: "technology",
   icons: {
     icon: "/lulo.png",
+    apple: "/lulo.png",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#F5F5F5",
 };
 
 export default function RootLayout({

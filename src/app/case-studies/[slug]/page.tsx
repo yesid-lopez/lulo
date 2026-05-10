@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { cmsCaseStudiesData, getCmsCaseStudyBySlug } from '@/utils/cmsCaseStudiesData';
+import { createPageMetadata } from '@/lib/seo';
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
@@ -18,15 +19,18 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const study = getCmsCaseStudyBySlug(slug);
 
   if (!study) {
-    return {
-      title: 'Case Study | lulo',
-    };
+    return createPageMetadata({
+      title: 'Case Study',
+      description: 'Explore lulo AI product case studies and practical digital solutions.',
+      path: '/case-studies',
+    });
   }
 
-  return {
-    title: `${study.title} | lulo Case Study`,
+  return createPageMetadata({
+    title: `${study.title} Case Study`,
     description: study.summary,
-  };
+    path: `/case-studies/${study.slug}`,
+  });
 }
 
 export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPageProps) {
