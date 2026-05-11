@@ -165,6 +165,10 @@ export interface Media {
 export interface CaseStudy {
   id: number;
   /**
+   * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; hackathons render in the awards grid.
+   */
+  type: 'featured-project' | 'hackathon';
+  /**
    * Name of the app/project (e.g., "Vita", "Clever")
    */
   title: string;
@@ -386,6 +390,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "case-studies_select".
  */
 export interface CaseStudiesSelect<T extends boolean = true> {
+  type?: T;
   title?: T;
   slug?: T;
   description?: T;

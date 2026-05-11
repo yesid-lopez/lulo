@@ -3,6 +3,7 @@ import type { CaseStudySeed } from './index'
 export const slug = 'deu-leben-in-deutschland-2026'
 
 export const data: CaseStudySeed = {
+  type: 'featured-project',
   title: 'DEU: Leben in Deutschland 2026',
   slug,
   description:
