@@ -109,6 +109,10 @@ export default function CmsCaseStudiesShowcase() {
 
   return (
     <section className="mt-14">
+      <p className="mb-8 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">
+        Featured projects
+      </p>
+
       <div className="grid gap-6 lg:grid-cols-2">
         {cmsCaseStudiesData.map((study) => (
           <CmsCaseStudyCard key={study.slug} {...study} />
