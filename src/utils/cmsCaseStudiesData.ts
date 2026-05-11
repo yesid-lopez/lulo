@@ -14,7 +14,10 @@ export type CmsCaseStudyMockup = {
   alt: string;
 };
 
+export type CmsCaseStudyType = 'featured-project' | 'hackathon';
+
 export type CmsCaseStudy = {
+  type: CmsCaseStudyType;
   title: string;
   slug: string;
   eyebrow: string;
@@ -31,6 +34,7 @@ export type CmsCaseStudy = {
 
 export const cmsCaseStudiesData: CmsCaseStudy[] = [
   {
+    type: 'featured-project',
     title: 'DEU: Leben in Deutschland 2026',
     slug: 'deu-leben-in-deutschland-2026',
     eyebrow: 'iOS Learning Platform',
@@ -119,4 +123,8 @@ export const cmsCaseStudiesData: CmsCaseStudy[] = [
 
 export function getCmsCaseStudyBySlug(slug: string) {
   return cmsCaseStudiesData.find((study) => study.slug === slug);
+}
+
+export function getCmsCaseStudiesByType(type: CmsCaseStudyType) {
+  return cmsCaseStudiesData.filter((study) => study.type === type);
 }

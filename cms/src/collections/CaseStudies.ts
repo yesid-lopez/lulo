@@ -4,12 +4,32 @@ export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'award', 'updatedAt'],
+    defaultColumns: ['title', 'type', 'category', 'award', 'updatedAt'],
   },
   access: {
     read: () => true,
   },
   fields: [
+    {
+      name: 'type',
+      type: 'select',
+      required: true,
+      defaultValue: 'featured-project',
+      options: [
+        {
+          label: 'Featured project',
+          value: 'featured-project',
+        },
+        {
+          label: 'Hackathon',
+          value: 'hackathon',
+        },
+      ],
+      admin: {
+        description:
+          'Which surface this case study belongs to. Featured projects render at the top of the case-studies page; hackathons render in the awards grid.',
+      },
+    },
     {
       name: 'title',
       type: 'text',

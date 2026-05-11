@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { cmsCaseStudiesData, type CmsCaseStudy } from '@/utils/cmsCaseStudiesData';
+import { getCmsCaseStudiesByType, type CmsCaseStudy } from '@/utils/cmsCaseStudiesData';
 
 const CmsCaseStudyCard = ({
   title,
@@ -103,7 +103,9 @@ const CmsCaseStudyCard = ({
 };
 
 export default function CmsCaseStudiesShowcase() {
-  if (cmsCaseStudiesData.length === 0) {
+  const featuredProjects = getCmsCaseStudiesByType('featured-project');
+
+  if (featuredProjects.length === 0) {
     return null;
   }
 
@@ -114,7 +116,7 @@ export default function CmsCaseStudiesShowcase() {
       </p>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        {cmsCaseStudiesData.map((study) => (
+        {featuredProjects.map((study) => (
           <CmsCaseStudyCard key={study.slug} {...study} />
         ))}
       </div>
