@@ -34,6 +34,45 @@ To do so, follow these steps:
 - Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
 - Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
 
+## Content seeding
+
+Some collections (case studies, etc.) have content worth keeping in git so a fresh database can be bootstrapped, or so a new project can be added with a code-reviewed copy pass. We do this with **seed scripts**, not Payload migrations.
+
+### Why seeds and not migrations
+
+Migrations are for schema changes only. If you put content inside a migration's `up()`:
+
+- The moment an editor changes the record from the admin UI, the migration becomes a lie. The admin UI is the source of truth for content, not the codebase.
+- `down()` looks like a rollback but it isn't — it would erase whatever the editor has changed since.
+- Every new project becomes another 80+ line migration file, even though that content belongs in the DB.
+
+Seeds, in contrast, are **idempotent and manually invoked**. They create a record only if it doesn't exist yet (`--force` overrides). Once a record exists in the CMS, the admin UI takes over and the seed becomes irrelevant — the seed is essentially a typed, reviewable "first draft".
+
+### Layout
+
+```
+cms/src/seed/
+  index.ts                      # CLI entry point
+  case-studies/
+    index.ts                    # array of all case-study seeds
+    <slug>.ts                   # one file per case study
+```
+
+### Adding a new seed
+
+1. Create `cms/src/seed/case-studies/<slug>.ts` exporting a `slug` constant and a `data` object (matching the case-studies collection shape).
+2. Append the new module's `data` to the array in `cms/src/seed/case-studies/index.ts`.
+
+### Running
+
+```bash
+pnpm seed                         # creates every defined seed that does not already exist
+pnpm seed <slug>                  # seeds only the given slug
+pnpm seed <slug> --force          # overwrites the existing doc (use sparingly)
+```
+
+The script uses the Payload local API against whatever database `DATABASE_URI` points to in your shell. To seed a remote environment, export that environment's `DATABASE_URI` (and `PAYLOAD_SECRET`) in your shell before running — seeds are **not** part of the deploy pipeline.
+
 ## How it works
 
 The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
