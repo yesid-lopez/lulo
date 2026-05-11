@@ -23,7 +23,7 @@ RUN \
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY package.json pnpm-lock.yaml next.config.mjs next-env.d.ts tsconfig.json ./
+COPY package.json pnpm-lock.yaml next.config.mjs tsconfig.json ./
 COPY src ./src
 
 # Next.js collects completely anonymous telemetry data about general usage.
