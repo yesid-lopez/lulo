@@ -62,6 +62,20 @@ export default function Home() {
             }`}>
               {t('subtitle')}
             </p>
+            <div className={isPortrait ? "mt-4" : "mt-1 sm:mt-2"}>
+              <Link 
+                href="/contact-us" 
+                className={`text-black hover:underline transition duration-300 block sora-light ${
+                  isPortrait 
+                    ? "text-lg sm:text-xl md:text-xl" 
+                    : "text-sm sm:text-base md:text-lg"
+                }`}
+              >
+                <span>{t('applyTodayLine1')}</span>
+                <br />
+                <span>{t('applyTodayLine2')}</span>
+              </Link>
+            </div>
             <div className={`flex flex-col gap-3 sm:flex-row ${isPortrait ? "mt-4" : "mt-3 sm:mt-4"}`}>
               <Link
                 href="/contact-us"
