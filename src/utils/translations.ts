@@ -13,6 +13,8 @@ export const translations: Translations = {
     subtitle: 'Advanced AI Applications and Intelligent Agents',
     applyTodayLine1: 'The next big thing? It starts',
     applyTodayLine2: 'with AI—Let\'s talk.',
+    homePrimaryCta: 'Start a project',
+    homeSecondaryCta: 'View case studies',
     // Contact form translations
     contactHeading: 'How can we help bring your ideas to life?',
     contactSubheading: 'Tell us about your project, and we\'ll be in touch soon!',
@@ -83,6 +85,8 @@ export const translations: Translations = {
     subtitle: 'Aplicaciones Avanzadas de IA y Agentes Inteligentes',
     applyTodayLine1: '¿Lo próximo grande? Comienza',
     applyTodayLine2: 'con IA—Hablemos.',
+    homePrimaryCta: 'Iniciar un proyecto',
+    homeSecondaryCta: 'Ver casos de estudio',
     // Contact form translations
     contactHeading: '¿Cómo podemos ayudar a dar vida a tus ideas?',
     contactSubheading: '¡Cuéntanos sobre tu proyecto y nos pondremos en contacto pronto!',
@@ -153,6 +157,8 @@ export const translations: Translations = {
     subtitle: 'Fortschrittliche AI-Anwendungen und intelligente Agenten',
     applyTodayLine1: 'Das nächste große Ding? Es beginnt',
     applyTodayLine2: 'mit AI—Lass uns reden.',
+    homePrimaryCta: 'Projekt starten',
+    homeSecondaryCta: 'Fallstudien ansehen',
     // Contact form translations
     contactHeading: 'Wie können wir helfen, Ihre Ideen zum Leben zu erwecken?',
     contactSubheading: 'Erzählen Sie uns von Ihrem Projekt und wir melden uns bald!',

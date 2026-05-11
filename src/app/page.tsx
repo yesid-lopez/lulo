@@ -62,18 +62,26 @@ export default function Home() {
             }`}>
               {t('subtitle')}
             </p>
-            <div className={isPortrait ? "mt-4" : "mt-1 sm:mt-2"}>
-              <Link 
-                href="/contact-us" 
-                className={`text-black hover:underline transition duration-300 block sora-light ${
-                  isPortrait 
-                    ? "text-lg sm:text-xl md:text-xl" 
-                    : "text-sm sm:text-base md:text-lg"
+            <div className={`flex flex-col gap-3 sm:flex-row ${isPortrait ? "mt-4" : "mt-3 sm:mt-4"}`}>
+              <Link
+                href="/contact-us"
+                className={`inline-flex items-center justify-center rounded-full bg-gray-950 px-6 py-3 font-semibold text-white transition-colors hover:bg-gray-800 ${
+                  isPortrait
+                    ? "text-sm sm:text-base"
+                    : "text-xs sm:text-sm"
                 }`}
               >
-                <span>{t('applyTodayLine1')}</span>
-                <br />
-                <span>{t('applyTodayLine2')}</span>
+                {t('homePrimaryCta')}
+              </Link>
+              <Link
+                href="/case-studies"
+                className={`inline-flex items-center justify-center rounded-full border border-gray-950 px-6 py-3 font-semibold text-gray-950 transition-colors hover:bg-gray-950 hover:text-white ${
+                  isPortrait
+                    ? "text-sm sm:text-base"
+                    : "text-xs sm:text-sm"
+                }`}
+              >
+                {t('homeSecondaryCta')}
               </Link>
             </div>
           </div>
