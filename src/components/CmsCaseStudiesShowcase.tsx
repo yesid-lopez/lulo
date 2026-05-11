@@ -11,79 +11,93 @@ const CmsCaseStudyCard = ({
   tags,
   highlights,
   mockups,
+  links,
 }: CmsCaseStudy) => {
+  const primaryProjectLink = links[0];
+
   return (
-    <Link
-      href={`/case-studies/${slug}`}
-      className="group block rounded-3xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg md:p-6"
-    >
-      <article className="flex h-full flex-col">
-        <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
-          <span>{eyebrow}</span>
-          <span className="h-1 w-1 rounded-full bg-gray-400" />
-          <span>{category}</span>
-        </div>
+    <article className="group flex h-full flex-col rounded-3xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg md:p-6">
+      <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
+        <span>{eyebrow}</span>
+        <span className="h-1 w-1 rounded-full bg-gray-400" />
+        <span>{category}</span>
+      </div>
 
-        <h2 className="mb-4 text-2xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-blue-600 md:text-3xl">
-          {title}
-        </h2>
-        <p className="mb-6 text-base leading-7 text-gray-600">{summary}</p>
+      <h2 className="mb-4 text-2xl font-semibold leading-tight text-gray-950 transition-colors group-hover:text-blue-600 md:text-3xl">
+        {title}
+      </h2>
+      <p className="mb-6 text-base leading-7 text-gray-600">{summary}</p>
 
-        {mockups.length > 0 ? (
-          <div className="mb-5 overflow-hidden rounded-3xl bg-[#111111] px-4 pt-5 sm:px-5 sm:pt-6">
-            <div className="relative mx-auto flex min-h-[18rem] max-w-sm items-end justify-center sm:min-h-56 sm:max-w-none sm:gap-4 lg:min-h-64">
-              {mockups.slice(0, 3).map((mockup, index) => {
-                const mobilePosition =
-                  index === 0
-                    ? 'absolute bottom-0 left-1/2 z-20 w-32 -translate-x-1/2 sm:static sm:w-28 sm:translate-x-0 lg:w-32'
-                    : index === 1
-                      ? 'absolute bottom-8 left-4 z-10 w-24 -rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32'
-                      : 'absolute bottom-8 right-4 z-10 w-24 rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32';
+      {mockups.length > 0 ? (
+        <div className="mb-5 overflow-hidden rounded-3xl bg-[#111111] px-4 pt-5 sm:px-5 sm:pt-6">
+          <div className="relative mx-auto flex min-h-[18rem] max-w-sm items-end justify-center sm:min-h-56 sm:max-w-none sm:gap-4 lg:min-h-64">
+            {mockups.slice(0, 3).map((mockup, index) => {
+              const mobilePosition =
+                index === 0
+                  ? 'absolute bottom-0 left-1/2 z-20 w-32 -translate-x-1/2 sm:static sm:w-28 sm:translate-x-0 lg:w-32'
+                  : index === 1
+                    ? 'absolute bottom-8 left-4 z-10 w-24 -rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32'
+                    : 'absolute bottom-8 right-4 z-10 w-24 rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32';
 
-                const desktopPosition = index === 0 ? 'sm:translate-y-8' : index === 1 ? 'sm:translate-y-0' : 'sm:translate-y-8';
+              const desktopPosition = index === 0 ? 'sm:translate-y-8' : index === 1 ? 'sm:translate-y-0' : 'sm:translate-y-8';
 
-                return (
-                  <div
-                    key={mockup.src}
-                    className={`${mobilePosition} ${desktopPosition} shrink-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-gray-900 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]`}
-                  >
-                    <Image
-                      src={mockup.src}
-                      alt={mockup.alt}
-                      width={600}
-                      height={1299}
-                      className="h-auto w-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                );
-              })}
-            </div>
+              return (
+                <div
+                  key={mockup.src}
+                  className={`${mobilePosition} ${desktopPosition} shrink-0 overflow-hidden rounded-[1.6rem] border border-white/10 bg-gray-900 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]`}
+                >
+                  <Image
+                    src={mockup.src}
+                    alt={mockup.alt}
+                    width={600}
+                    height={1299}
+                    className="h-auto w-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              );
+            })}
           </div>
-        ) : null}
+        </div>
+      ) : null}
 
-        <div className="mb-6 grid gap-3 sm:grid-cols-3">
-          {highlights.map((highlight) => (
-            <div key={highlight} className="rounded-2xl bg-gray-100 px-4 py-3 text-sm font-medium text-gray-800">
-              {highlight}
-            </div>
+      <div className="mb-6 grid gap-3 sm:grid-cols-3">
+        {highlights.map((highlight) => (
+          <div key={highlight} className="rounded-2xl bg-gray-100 px-4 py-3 text-sm font-medium text-gray-800">
+            {highlight}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-auto flex flex-col gap-5">
+        <div className="flex flex-wrap gap-2">
+          {tags.slice(0, 3).map((tag) => (
+            <span key={tag} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
+              {tag}
+            </span>
           ))}
         </div>
 
-        <div className="mt-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap gap-2">
-            {tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
-                {tag}
-              </span>
-            ))}
-          </div>
-          <span className="text-sm font-semibold text-blue-600 transition-transform group-hover:translate-x-1">
+        <div className="flex flex-wrap items-center gap-3">
+          <Link
+            href={`/case-studies/${slug}`}
+            className="inline-flex items-center rounded-full bg-gray-950 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-600"
+          >
             View case study →
-          </span>
+          </Link>
+          {primaryProjectLink ? (
+            <a
+              href={primaryProjectLink.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-900 transition-colors hover:border-blue-600 hover:text-blue-600"
+            >
+              {primaryProjectLink.label} ↗
+            </a>
+          ) : null}
         </div>
-      </article>
-    </Link>
+      </div>
+    </article>
   );
 };
 
