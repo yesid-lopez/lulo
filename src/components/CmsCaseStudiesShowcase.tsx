@@ -15,7 +15,7 @@ const CmsCaseStudyCard = ({
   return (
     <Link
       href={`/case-studies/${slug}`}
-      className="group block rounded-3xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg md:p-8"
+      className="group block rounded-3xl border border-gray-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-300 hover:shadow-lg md:p-6"
     >
       <article className="flex h-full flex-col">
         <div className="mb-5 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
@@ -30,15 +30,15 @@ const CmsCaseStudyCard = ({
         <p className="mb-6 text-base leading-7 text-gray-600">{summary}</p>
 
         {mockups.length > 0 ? (
-          <div className="mb-6 overflow-hidden rounded-3xl bg-[#111111] px-4 pt-5 sm:px-5 sm:pt-6">
-            <div className="relative mx-auto flex min-h-[22rem] max-w-sm items-end justify-center sm:min-h-64 sm:max-w-none sm:gap-5">
+          <div className="mb-5 overflow-hidden rounded-3xl bg-[#111111] px-4 pt-5 sm:px-5 sm:pt-6">
+            <div className="relative mx-auto flex min-h-[18rem] max-w-sm items-end justify-center sm:min-h-56 sm:max-w-none sm:gap-4 lg:min-h-64">
               {mockups.slice(0, 3).map((mockup, index) => {
                 const mobilePosition =
                   index === 0
-                    ? 'absolute bottom-0 left-1/2 z-20 w-36 -translate-x-1/2 sm:static sm:w-32 sm:translate-x-0'
+                    ? 'absolute bottom-0 left-1/2 z-20 w-32 -translate-x-1/2 sm:static sm:w-28 sm:translate-x-0 lg:w-32'
                     : index === 1
-                      ? 'absolute bottom-8 left-4 z-10 w-28 -rotate-6 opacity-90 sm:static sm:w-32 sm:rotate-0 sm:opacity-100'
-                      : 'absolute bottom-8 right-4 z-10 w-28 rotate-6 opacity-90 sm:static sm:w-32 sm:rotate-0 sm:opacity-100';
+                      ? 'absolute bottom-8 left-4 z-10 w-24 -rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32'
+                      : 'absolute bottom-8 right-4 z-10 w-24 rotate-6 opacity-90 sm:static sm:w-28 sm:rotate-0 sm:opacity-100 lg:w-32';
 
                 const desktopPosition = index === 0 ? 'sm:translate-y-8' : index === 1 ? 'sm:translate-y-0' : 'sm:translate-y-8';
 
@@ -106,7 +106,7 @@ export default function CmsCaseStudiesShowcase() {
         </p>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-6 lg:grid-cols-2">
         {cmsCaseStudiesData.map((study) => (
           <CmsCaseStudyCard key={study.slug} {...study} />
         ))}
