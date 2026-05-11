@@ -109,23 +109,6 @@ export default function CmsCaseStudiesShowcase() {
 
   return (
     <section className="mt-14">
-      <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div className="max-w-3xl">
-          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">
-            Featured products
-          </p>
-          <h2 className="mb-3 text-2xl font-semibold text-gray-950 md:text-4xl">
-            Launched web and mobile experiences
-          </h2>
-          <p className="text-base leading-7 text-gray-600 md:text-lg">
-            Production-ready projects with polished interfaces, real user flows, and clear product thinking.
-          </p>
-        </div>
-        <div className="rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-600 shadow-sm">
-          {cmsCaseStudiesData.length} featured projects
-        </div>
-      </div>
-
       <div className="grid gap-6 lg:grid-cols-2">
         {cmsCaseStudiesData.map((study) => (
           <CmsCaseStudyCard key={study.slug} {...study} />

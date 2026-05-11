@@ -107,23 +107,6 @@ export default function CaseStudies() {
       <Navigation />
 
       <main className="flex-grow px-6 pb-16 pt-8 md:px-12 md:pb-20 lg:px-24">
-        <section className="relative overflow-hidden rounded-[2rem] border border-gray-200 bg-white px-6 py-10 shadow-sm md:px-10 md:py-14 lg:px-12">
-          <div className="absolute right-0 top-0 h-48 w-48 translate-x-16 -translate-y-16 rounded-full bg-blue-100 blur-3xl" />
-          <div className="absolute bottom-0 left-0 h-40 w-40 -translate-x-16 translate-y-16 rounded-full bg-amber-100 blur-3xl" />
-
-          <div className="relative max-w-4xl">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.28em] text-blue-600">
-              Case studies
-            </p>
-            <h1 className="mb-5 max-w-3xl text-4xl font-semibold leading-tight text-gray-950 md:text-5xl lg:text-6xl">
-              Selected AI products and digital experiences
-            </h1>
-            <p className="max-w-2xl text-base leading-7 text-gray-600 md:text-lg">
-              A collection of launched products, AI prototypes, and award-winning experiments built across mobile, web, automation, and machine learning.
-            </p>
-          </div>
-        </section>
-
         <CmsCaseStudiesShowcase />
 
         <section className="mt-16">
