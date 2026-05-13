@@ -63,10 +63,10 @@ export default function CaseStudyMockupGallery({ mockups }: Props) {
   };
 
   return (
-    <div className="relative -mx-6 md:-mx-10">
+    <div className="relative">
       <ul
         ref={stripRef}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6 md:px-10"
+        className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-6"
       >
         {mockups.map((mockup) => (
           <li key={mockup.src} className="snap-start shrink-0">
