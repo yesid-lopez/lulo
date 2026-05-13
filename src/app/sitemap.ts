@@ -7,6 +7,9 @@ const staticRoutes = [
   "/about-us",
   "/case-studies",
   "/contact-us",
+  "/privacy",
+  "/terms",
+  "/cookies",
   "/privacy/derdiedas",
   "/privacy/wouldyourather",
 ];
@@ -19,10 +22,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...caseStudies.map((study) => `/case-studies/${study.slug}`),
   ];
 
+  const isLegal = (route: string) =>
+    route.startsWith("/privacy") ||
+    route === "/terms" ||
+    route === "/cookies";
+
   return routes.map((route) => ({
     url: new URL(route, siteUrl).toString(),
     lastModified: now,
-    changeFrequency: route.startsWith("/privacy") ? "yearly" : "monthly",
-    priority: route === "" ? 1 : route.startsWith("/privacy") ? 0.2 : 0.8,
+    changeFrequency: isLegal(route) ? "yearly" : "monthly",
+    priority: route === "" ? 1 : isLegal(route) ? 0.2 : 0.8,
   }));
 }
