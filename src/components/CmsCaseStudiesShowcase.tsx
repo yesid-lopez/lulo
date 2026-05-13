@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCmsCaseStudiesByType, type CmsCaseStudy } from '@/utils/cmsCaseStudiesData';
+import { getCmsCaseStudiesByType, type CmsCaseStudy } from '@/utils/cmsCaseStudies';
 
 const CmsCaseStudyCard = ({
   title,
@@ -102,8 +102,8 @@ const CmsCaseStudyCard = ({
   );
 };
 
-export default function CmsCaseStudiesShowcase() {
-  const featuredProjects = getCmsCaseStudiesByType('featured-project');
+export default async function CmsCaseStudiesShowcase() {
+  const featuredProjects = await getCmsCaseStudiesByType('featured-project');
 
   if (featuredProjects.length === 0) {
     return null;
