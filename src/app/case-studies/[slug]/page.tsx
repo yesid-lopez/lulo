@@ -1,8 +1,8 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+import CaseStudyMockupGallery from '@/components/CaseStudyMockupGallery';
 import { getCmsCaseStudies, getCmsCaseStudyBySlug } from '@/utils/cmsCaseStudies';
 import { createPageMetadata } from '@/lib/seo';
 
@@ -101,25 +101,12 @@ export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPagePr
               </div>
               {study.mockups.length > 3 ? (
                 <p className="text-xs uppercase tracking-[0.18em] text-gray-400">
-                  {study.mockups.length} screens · scroll →
+                  {study.mockups.length} screens
                 </p>
               ) : null}
             </div>
 
-            <ul className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-10 md:gap-6 md:px-10">
-              {study.mockups.map((mockup) => (
-                <li key={mockup.src} className="snap-start shrink-0">
-                  <Image
-                    src={mockup.src}
-                    alt={mockup.alt}
-                    width={600}
-                    height={1299}
-                    loading="lazy"
-                    className="block h-[420px] w-auto rounded-2xl object-cover shadow-[0_24px_60px_-30px_rgba(17,24,39,0.45)] md:h-[480px]"
-                  />
-                </li>
-              ))}
-            </ul>
+            <CaseStudyMockupGallery mockups={study.mockups} />
           </section>
         ) : null}
 
