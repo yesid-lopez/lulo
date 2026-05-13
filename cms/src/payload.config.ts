@@ -36,7 +36,22 @@ export default buildConfig({
   sharp,
   plugins: [
     s3Storage({
-      collections: { media: true },
+      collections: {
+        media: {
+          // When S3_PUBLIC_URL is set, return externally-reachable URLs
+          // (e.g. https://media.luloai.com) instead of the in-cluster S3
+          // endpoint. Falls back to S3_ENDPOINT so local dev keeps working.
+          generateFileURL: ({ filename, prefix }) => {
+            const base = (process.env.S3_PUBLIC_URL || process.env.S3_ENDPOINT || '').replace(
+              /\/$/,
+              '',
+            )
+            const bucket = process.env.S3_BUCKET || ''
+            const key = prefix ? `${prefix}/${filename}` : filename
+            return `${base}/${bucket}/${key}`
+          },
+        },
+      },
       bucket: process.env.S3_BUCKET || '',
       config: {
         endpoint: process.env.S3_ENDPOINT,
