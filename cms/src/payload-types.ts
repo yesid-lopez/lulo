@@ -164,6 +164,7 @@ export interface Media {
  */
 export interface CaseStudy {
   id: number;
+  _order?: string | null;
   /**
    * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; hackathons render in the awards grid.
    */
@@ -181,6 +182,9 @@ export interface CaseStudy {
    */
   description: string;
   category: 'health-wellness' | 'education' | 'finance' | 'technology' | 'ecommerce' | 'entertainment' | 'other';
+  /**
+   * Which platform the app targets — mobile (iOS/Android) or web.
+   */
   platform: 'mobile' | 'web';
   award?: {
     /**
@@ -391,6 +395,7 @@ export interface MediaSelect<T extends boolean = true> {
  * via the `definition` "case-studies_select".
  */
 export interface CaseStudiesSelect<T extends boolean = true> {
+  _order?: T;
   type?: T;
   title?: T;
   slug?: T;

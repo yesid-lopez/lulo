@@ -127,7 +127,7 @@ const mapCaseStudy = (doc: PayloadCaseStudy): CmsCaseStudy => {
 const fetchCaseStudies = async (): Promise<CmsCaseStudy[]> => {
   const publishedOnly = process.env.NODE_ENV === 'production';
   const statusFilter = publishedOnly ? '&where%5Bstatus%5D%5Bequals%5D=published' : '';
-  const url = `${cmsUrl}/api/case-studies?depth=1&limit=100${statusFilter}`;
+  const url = `${cmsUrl}/api/case-studies?depth=1&limit=100&sort=_order${statusFilter}`;
   const res = await fetch(url, { next: { revalidate: 60 } });
   if (!res.ok) {
     throw new Error(`Failed to fetch case studies (${res.status}): ${await res.text()}`);

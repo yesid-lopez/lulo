@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 export const CaseStudies: CollectionConfig = {
   slug: 'case-studies',
+  orderable: true,
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'type', 'category', 'award', 'updatedAt'],

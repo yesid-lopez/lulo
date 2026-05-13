@@ -29,6 +29,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     prodMigrations: migrations,
+    push: false,
     pool: {
       connectionString: process.env.DATABASE_URI || '',
     },
