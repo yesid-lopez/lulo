@@ -9,6 +9,7 @@ export const data: CaseStudySeed = {
   description:
     'An AI-powered resume builder that helps job seekers craft publication-ready, ATS-optimized resumes. Generate from scratch, import an existing CV, or start from sample data — then tailor the result to any job description with professional templates (including a Harvard layout) and matching cover letters. Free tier available with no credit card required.',
   category: 'technology',
+  platform: 'web',
   keyFeatures: [
     {
       number: '01',

@@ -91,6 +91,18 @@ export const CaseStudies: CollectionConfig = {
       ],
     },
     {
+      name: 'platform',
+      type: 'select',
+      required: true,
+      options: [
+        { label: 'Mobile', value: 'mobile' },
+        { label: 'Web', value: 'web' },
+      ],
+      admin: {
+        description: 'Which platform the app targets — mobile (iOS/Android) or web.',
+      },
+    },
+    {
       name: 'award',
       type: 'group',
       fields: [
