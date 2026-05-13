@@ -1,52 +1,28 @@
-# Payload Blank Template
+# lulo CMS
 
-This template comes configured with the bare minimum to get started on anything you need.
+Payload CMS that backs the [lulo landing site](https://luloai.com). Lives at [cms.luloai.com](https://cms.luloai.com/admin) in production; serves case studies (and their media) over the REST API.
 
-## Quick start
+Stack: Payload 3 · Next.js 15 · Postgres (CloudNativePG in the homelab cluster) · MinIO for media (served publicly at `media.luloai.com/payload-media/...`).
 
-This template can be deployed directly from our Cloud hosting and it will setup MongoDB and cloud S3 object storage for media.
+## Local development
 
-## Quick Start - local setup
+Prereqs: Node ^18.20 or >=20.9, `pnpm`, Docker (only if you want the bundled Postgres).
 
-To spin up this template locally, follow these steps:
+```bash
+cp .env.example .env
+# Fill in DATABASE_URI + PAYLOAD_SECRET at minimum.
 
-### Clone
+pnpm install
+pnpm dev                # http://localhost:3000/admin
+```
 
-After you click the `Deploy` button above, you'll want to have standalone copy of this repo on your machine. If you've already cloned this repo, skip to [Development](#development).
-
-### Development
-
-1. First [clone the repo](#clone) if you have not done so already
-2. `cd my-project && cp .env.example .env` to copy the example environment variables. You'll need to add the `MONGODB_URI` from your Cloud project to your `.env` if you want to use S3 storage and the MongoDB database that was created for you.
-
-3. `pnpm install && pnpm dev` to install dependencies and start the dev server
-4. open `http://localhost:3000` to open the app in your browser
-
-That's it! Changes made in `./src` will be reflected in your app. Follow the on-screen instructions to login and create your first admin user. Then check out [Production](#production) once you're ready to build and serve your app, and [Deployment](#deployment) when you're ready to go live.
-
-#### Docker (Optional)
-
-If you prefer to use Docker for local development instead of a local MongoDB instance, the provided docker-compose.yml file can be used.
-
-To do so, follow these steps:
-
-- Modify the `MONGODB_URI` in your `.env` file to `mongodb://127.0.0.1/<dbname>`
-- Modify the `docker-compose.yml` file's `MONGODB_URI` to match the above `<dbname>`
-- Run `docker-compose up` to start the database, optionally pass `-d` to run in the background.
+For a one-command stack with a local Postgres, `docker-compose up` brings up Postgres on `5432` and the dev server on `3000` (uses `.env`).
 
 ## Content seeding
 
-Some collections (case studies, etc.) have content worth keeping in git so a fresh database can be bootstrapped, or so a new project can be added with a code-reviewed copy pass. We do this with **seed scripts**, not Payload migrations.
+Case studies live in git as **seed scripts** so a fresh database can be bootstrapped and new entries get a code-reviewed first draft. Seeds are idempotent — they create a record only if it doesn't exist (`--force` overwrites).
 
-### Why seeds and not migrations
-
-Migrations are for schema changes only. If you put content inside a migration's `up()`:
-
-- The moment an editor changes the record from the admin UI, the migration becomes a lie. The admin UI is the source of truth for content, not the codebase.
-- `down()` looks like a rollback but it isn't — it would erase whatever the editor has changed since.
-- Every new project becomes another 80+ line migration file, even though that content belongs in the DB.
-
-Seeds, in contrast, are **idempotent and manually invoked**. They create a record only if it doesn't exist yet (`--force` overrides). Once a record exists in the CMS, the admin UI takes over and the seed becomes irrelevant — the seed is essentially a typed, reviewable "first draft".
+**Why seeds and not migrations:** migrations are for schema changes only. The moment an editor changes a record from the admin UI, a content migration becomes a lie, and its `down()` would erase whatever the editor saved. The admin UI is the source of truth for content; seeds are just the typed, reviewable initial state.
 
 ### Layout
 
@@ -60,47 +36,58 @@ cms/src/seed/
 
 ### Adding a new seed
 
-1. Create `cms/src/seed/case-studies/<slug>.ts` exporting a `slug` constant and a `data` object (matching the case-studies collection shape).
-2. Append the new module's `data` to the array in `cms/src/seed/case-studies/index.ts`.
+1. Create `cms/src/seed/case-studies/<slug>.ts` exporting `slug` + `data` (matching the case-studies collection shape).
+2. Append the module's `data` to the array in `cms/src/seed/case-studies/index.ts`.
 
 ### Running
 
 ```bash
-pnpm seed                         # creates every defined seed that does not already exist
-pnpm seed <slug>                  # seeds only the given slug
-pnpm seed <slug> --force          # overwrites the existing doc (use sparingly)
+pnpm seed                       # seeds everything; skips existing rows
+pnpm seed <slug>                # one row
+pnpm seed <slug> --force        # overwrite existing (use sparingly)
 ```
 
-The script uses the Payload local API against whatever database `DATABASE_URI` points to in your shell. To seed a remote environment, export that environment's `DATABASE_URI` (and `PAYLOAD_SECRET`) in your shell before running — seeds are **not** part of the deploy pipeline.
+By default the script uses the Payload Local API against whatever `DATABASE_URI` resolves to in your shell / `.env` — i.e. your local DB.
 
-## How it works
+### Seeding production
 
-The Payload config is tailored specifically to the needs of most websites. It is pre-configured in the following ways:
+```bash
+pnpm seed:prod                  # SEED_ENV=prod under the hood
+```
 
-### Collections
+This loads `cms/.env.prod` (override of `.env`) and goes through the **REST API** at `CMS_URL`, authenticating with `CMS_EMAIL` + `CMS_PASSWORD`. No DB port-forward needed. Skips existing rows; pass `--force` to overwrite.
 
-See the [Collections](https://payloadcms.com/docs/configuration/collections) docs for details on how to extend this functionality.
+`cms/.env.prod` is gitignored — don't commit credentials. Same flag set works for any other env (`SEED_ENV=staging` loads `.env.staging`, etc.).
 
-- #### Users (Authentication)
+## Releases & deployment
 
-  Users are auth-enabled collections that have access to the admin panel.
+Production runs the `registry.yesidlopez.de/lulo-cms` image in the homelab cluster (see [yesid-lopez/homelab `apps/production/lulo-cms/`](https://github.com/yesid-lopez/homelab/tree/main/apps/production/lulo-cms)).
 
-  For additional help, see the official [Auth Example](https://github.com/payloadcms/payload/tree/main/examples/auth) or the [Authentication](https://payloadcms.com/docs/authentication/overview#authentication-overview) docs.
+The `cms-publish` GitHub workflow is triggered by **publishing a GitHub Release** with tag `cms-vX.Y.Z`:
 
-- #### Media
+```bash
+gh release create cms-v1.4.0 --target main --title "cms-v1.4.0" --notes "…"
+```
 
-  This is the uploads enabled collection. It features pre-configured sizes, focal point and manual resizing to help you manage your pictures.
+That builds a multi-arch image, pushes it to the registry, and Flux's image-update-automation rolls the deployment.
 
-### Docker
+## Useful commands
 
-Alternatively, you can use [Docker](https://www.docker.com) to spin up this template locally. To do so, follow these steps:
+```bash
+pnpm dev                        # dev server
+pnpm devsafe                    # clean .next then dev
+pnpm build                      # production build
+pnpm start                      # production server (after build)
+pnpm lint                       # ESLint
+pnpm test:int                   # vitest integration tests
+pnpm generate:types             # regenerate payload-types.ts after schema changes
+pnpm generate:importmap         # regenerate admin import map
+pnpm payload migrate            # run pending migrations
+pnpm payload migrate:create     # scaffold a new migration
+```
 
-1. Follow [steps 1 and 2 from above](#development), the docker-compose file will automatically use the `.env` file in your project root
-1. Next run `docker-compose up`
-1. Follow [steps 4 and 5 from above](#development) to login and create your first admin user
+## Collections
 
-That's it! The Docker instance will help you get up and running quickly while also standardizing the development environment across your teams.
-
-## Questions
-
-If you have any issues or questions, reach out to us on [Discord](https://discord.com/invite/payload) or start a [GitHub discussion](https://github.com/payloadcms/payload/discussions).
+- **Users** — auth, admin panel access.
+- **Media** — uploaded files, persisted in the `payload-media` MinIO bucket (public-read in prod via `media.luloai.com`).
+- **Case Studies** — featured projects + hackathon entries. The landing site fetches `published` ones via `/api/case-studies?depth=1` and renders them at `luloai.com/case-studies`.
