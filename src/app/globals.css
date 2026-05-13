@@ -50,3 +50,28 @@ code {
   font-family: var(--font-sora), sans-serif !important;
   font-weight: 400 !important;
 }
+
+.study-card-title {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.study-card:hover .study-card-title {
+  background-size: 100% 2px;
+}
+
+/* Make the whole card a click target without nesting <a> tags.
+   The title anchor's ::before stretches across the card; other interactive
+   elements use .study-card-cta to sit above it and stay independently clickable. */
+.study-card-title::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.study-card .study-card-cta {
+  position: relative;
+  z-index: 2;
+}
