@@ -9,6 +9,7 @@ export const data: CaseStudySeed = {
   description:
     'A comprehensive iOS learning platform for the German citizenship test (Einbürgerungstest / Leben in Deutschland). Covers all 310+ official questions across the 16 Bundesländer with detailed explanations and legal context, multiple study modes, exam simulation, and multilingual support across 10 languages.',
   category: 'education',
+  platform: 'mobile',
   keyFeatures: [
     {
       number: '01',

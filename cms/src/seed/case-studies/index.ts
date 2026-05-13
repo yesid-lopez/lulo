@@ -4,5 +4,6 @@ export type CaseStudySeed = Omit<CaseStudy, 'id' | 'createdAt' | 'updatedAt'>
 
 import { data as deuLebenInDeutschland2026 } from './deu-leben-in-deutschland-2026'
 import { data as artikelDerDieDas } from './artikel-der-die-das'
+import { data as resumelo } from './resumelo'
 
-export const caseStudies: CaseStudySeed[] = [deuLebenInDeutschland2026, artikelDerDieDas]
+export const caseStudies: CaseStudySeed[] = [deuLebenInDeutschland2026, artikelDerDieDas, resumelo]

@@ -181,6 +181,7 @@ export interface CaseStudy {
    */
   description: string;
   category: 'health-wellness' | 'education' | 'finance' | 'technology' | 'ecommerce' | 'entertainment' | 'other';
+  platform: 'mobile' | 'web';
   award?: {
     /**
      * Award title (e.g., "Winner (2nd Place)")
@@ -395,6 +396,7 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   slug?: T;
   description?: T;
   category?: T;
+  platform?: T;
   award?:
     | T
     | {

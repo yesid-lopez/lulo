@@ -9,6 +9,7 @@ export const data: CaseStudySeed = {
   description:
     'An iOS app that helps German learners master noun articles (der/die/das) through a curated vocabulary of 1,000+ words across 50+ categories, complete with plurals, example sentences, and native-speaker audio pronunciation. No account, no subscription — fully free.',
   category: 'education',
+  platform: 'mobile',
   keyFeatures: [
     {
       number: '01',
