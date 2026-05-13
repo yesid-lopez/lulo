@@ -94,25 +94,32 @@ export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPagePr
 
         {study.mockups.length > 0 ? (
           <section className="mt-12 overflow-hidden rounded-3xl bg-white p-6 shadow-sm md:p-10">
-            <div className="mb-8 max-w-2xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">App mockups</p>
-              <h2 className="text-2xl font-semibold text-gray-950 md:text-4xl">Product experience</h2>
+            <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+              <div className="max-w-2xl">
+                <p className="mb-3 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">App mockups</p>
+                <h2 className="text-2xl font-semibold text-gray-950 md:text-4xl">Product experience</h2>
+              </div>
+              {study.mockups.length > 3 ? (
+                <p className="text-xs uppercase tracking-[0.18em] text-gray-400">
+                  {study.mockups.length} screens · scroll →
+                </p>
+              ) : null}
             </div>
 
-            <div className="grid justify-items-center gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-10 md:gap-6 md:px-10">
               {study.mockups.map((mockup) => (
-                <div key={mockup.src} className="w-full max-w-[18rem] rounded-[2rem] bg-[#111111] p-3 shadow-lg sm:max-w-none">
+                <li key={mockup.src} className="snap-start shrink-0">
                   <Image
                     src={mockup.src}
                     alt={mockup.alt}
                     width={600}
                     height={1299}
-                    className="h-auto w-full rounded-[1.4rem] object-cover"
                     loading="lazy"
+                    className="block h-[420px] w-auto rounded-2xl object-cover shadow-[0_24px_60px_-30px_rgba(17,24,39,0.45)] md:h-[480px]"
                   />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </section>
         ) : null}
 
