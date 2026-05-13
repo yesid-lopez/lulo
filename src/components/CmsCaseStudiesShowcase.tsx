@@ -110,7 +110,7 @@ export default function CmsCaseStudiesShowcase() {
   }
 
   return (
-    <section className="mt-14">
+    <section>
       <p className="mb-8 text-sm font-semibold uppercase tracking-[0.24em] text-blue-600">
         Featured projects
       </p>
