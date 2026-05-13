@@ -61,6 +61,16 @@ RUN chown nextjs:nodejs .next
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
+# Re-add full node_modules + payload sources so `payload migrate` is runnable
+# from an init container. Next standalone strips these via output tracing.
+COPY --from=deps --chown=nextjs:nodejs /app/node_modules         ./node_modules
+COPY             --chown=nextjs:nodejs package.json              ./package.json
+COPY             --chown=nextjs:nodejs tsconfig.json             ./tsconfig.json
+COPY             --chown=nextjs:nodejs src/payload.config.ts     ./src/payload.config.ts
+COPY             --chown=nextjs:nodejs src/payload-types.ts      ./src/payload-types.ts
+COPY             --chown=nextjs:nodejs src/migrations            ./src/migrations
+COPY             --chown=nextjs:nodejs src/collections           ./src/collections
+
 USER nextjs
 
 EXPOSE 3000
