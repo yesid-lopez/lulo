@@ -3,20 +3,21 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { cmsCaseStudiesData, getCmsCaseStudyBySlug } from '@/utils/cmsCaseStudiesData';
+import { getCmsCaseStudies, getCmsCaseStudyBySlug } from '@/utils/cmsCaseStudies';
 import { createPageMetadata } from '@/lib/seo';
 
 type CaseStudyPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return cmsCaseStudiesData.map((study) => ({ slug: study.slug }));
+export async function generateStaticParams() {
+  const studies = await getCmsCaseStudies();
+  return studies.map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = getCmsCaseStudyBySlug(slug);
+  const study = await getCmsCaseStudyBySlug(slug);
 
   if (!study) {
     return createPageMetadata({
@@ -35,7 +36,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
 
 export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = getCmsCaseStudyBySlug(slug);
+  const study = await getCmsCaseStudyBySlug(slug);
 
   if (!study) {
     notFound();

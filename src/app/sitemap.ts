@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/seo";
-import { cmsCaseStudiesData } from "@/utils/cmsCaseStudiesData";
+import { getCmsCaseStudies } from "@/utils/cmsCaseStudies";
 
 const staticRoutes = [
   "",
@@ -11,11 +11,12 @@ const staticRoutes = [
   "/privacy/wouldyourather",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
+  const caseStudies = await getCmsCaseStudies();
   const routes = [
     ...staticRoutes,
-    ...cmsCaseStudiesData.map((study) => `/case-studies/${study.slug}`),
+    ...caseStudies.map((study) => `/case-studies/${study.slug}`),
   ];
 
   return routes.map((route) => ({
@@ -25,4 +26,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : route.startsWith("/privacy") ? 0.2 : 0.8,
   }));
 }
-
