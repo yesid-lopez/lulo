@@ -45,8 +45,11 @@ const seedViaLocalPayload = async (targets: CaseStudySeed[], force: boolean): Pr
   // module load time, before we've had a chance to override env.
   const { getPayload } = await import('payload')
   const { default: configPromise } = await import('@payload-config')
+  const { ensureDevUser } = await import('./dev-user')
 
   const payload = await getPayload({ config: configPromise })
+
+  await ensureDevUser(payload)
 
   for (const data of targets) {
     const existing = await payload.find({
