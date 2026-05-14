@@ -18,6 +18,9 @@ export type CmsCaseStudyMockup = {
 
 export type CmsCaseStudyType = 'featured-project' | 'hackathon' | 'real-implementation';
 
+export type CmsLocale = 'en' | 'es' | 'de';
+export const DEFAULT_CMS_LOCALE: CmsLocale = 'en';
+
 export type CmsCaseStudy = {
   type: CmsCaseStudyType;
   title: string;
@@ -140,11 +143,12 @@ const mapCaseStudy = (doc: PayloadCaseStudy): CmsCaseStudy => {
   };
 };
 
-const fetchCaseStudies = async (): Promise<CmsCaseStudy[]> => {
+const fetchCaseStudies = async (locale: CmsLocale): Promise<CmsCaseStudy[]> => {
   const publishedOnly = process.env.NODE_ENV === 'production';
   const statusFilter = publishedOnly ? '&where%5Bstatus%5D%5Bequals%5D=published' : '';
-  const url = `${cmsUrl}/api/case-studies?depth=1&limit=100&sort=_order${statusFilter}`;
-  const res = await fetch(url, { next: { revalidate: 60 } });
+  const localeQuery = `&locale=${locale}&fallback-locale=${DEFAULT_CMS_LOCALE}`;
+  const url = `${cmsUrl}/api/case-studies?depth=1&limit=100&sort=_order${statusFilter}${localeQuery}`;
+  const res = await fetch(url, { next: { revalidate: 60, tags: [`case-studies:${locale}`] } });
   if (!res.ok) {
     throw new Error(`Failed to fetch case studies (${res.status}): ${await res.text()}`);
   }
@@ -152,16 +156,22 @@ const fetchCaseStudies = async (): Promise<CmsCaseStudy[]> => {
   return json.docs.map(mapCaseStudy);
 };
 
-export async function getCmsCaseStudies(): Promise<CmsCaseStudy[]> {
-  return fetchCaseStudies();
+export async function getCmsCaseStudies(locale: CmsLocale = DEFAULT_CMS_LOCALE): Promise<CmsCaseStudy[]> {
+  return fetchCaseStudies(locale);
 }
 
-export async function getCmsCaseStudyBySlug(slug: string): Promise<CmsCaseStudy | undefined> {
-  const docs = await fetchCaseStudies();
+export async function getCmsCaseStudyBySlug(
+  slug: string,
+  locale: CmsLocale = DEFAULT_CMS_LOCALE,
+): Promise<CmsCaseStudy | undefined> {
+  const docs = await fetchCaseStudies(locale);
   return docs.find((study) => study.slug === slug);
 }
 
-export async function getCmsCaseStudiesByType(type: CmsCaseStudyType): Promise<CmsCaseStudy[]> {
-  const docs = await fetchCaseStudies();
+export async function getCmsCaseStudiesByType(
+  type: CmsCaseStudyType,
+  locale: CmsLocale = DEFAULT_CMS_LOCALE,
+): Promise<CmsCaseStudy[]> {
+  const docs = await fetchCaseStudies(locale);
   return docs.filter((study) => study.type === type);
 }

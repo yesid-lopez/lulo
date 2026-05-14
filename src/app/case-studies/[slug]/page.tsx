@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import CaseStudyMockupGallery from '@/components/CaseStudyMockupGallery';
 import { getCmsCaseStudies, getCmsCaseStudyBySlug } from '@/utils/cmsCaseStudies';
+import { getServerLocale } from '@/utils/serverLocale';
 import { createPageMetadata } from '@/lib/seo';
 
 type CaseStudyPageProps = {
@@ -11,13 +12,15 @@ type CaseStudyPageProps = {
 };
 
 export async function generateStaticParams() {
+  // Slugs are not localized, so the default locale fetch is enough to enumerate routes.
   const studies = await getCmsCaseStudies();
   return studies.map((study) => ({ slug: study.slug }));
 }
 
 export async function generateMetadata({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = await getCmsCaseStudyBySlug(slug);
+  const locale = await getServerLocale();
+  const study = await getCmsCaseStudyBySlug(slug, locale);
 
   if (!study) {
     return createPageMetadata({
@@ -36,7 +39,8 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
 
 export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPageProps) {
   const { slug } = await params;
-  const study = await getCmsCaseStudyBySlug(slug);
+  const locale = await getServerLocale();
+  const study = await getCmsCaseStudyBySlug(slug, locale);
 
   if (!study) {
     notFound();

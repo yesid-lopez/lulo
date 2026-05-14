@@ -17,6 +17,16 @@ interface TranslationProviderProps {
   children: ReactNode;
 }
 
+// Must stay in sync with LOCALE_COOKIE_NAME in src/utils/serverLocale.ts —
+// that's where server components read this value before fetching CMS content.
+const LOCALE_COOKIE_NAME = 'lulo-locale';
+const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
+
+const writeLocaleCookie = (lang: Language) => {
+  if (typeof document === 'undefined') return;
+  document.cookie = `${LOCALE_COOKIE_NAME}=${lang}; Path=/; Max-Age=${ONE_YEAR_SECONDS}; SameSite=Lax`;
+};
+
 export const TranslationProvider = ({ children }: TranslationProviderProps) => {
   const [language, setLanguage] = useState<Language>('en');
 
@@ -30,10 +40,12 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
     }
   }, []);
 
-  // Update localStorage when language changes
+  // Mirror the language to localStorage (for client UI strings) and a cookie
+  // (so server components can pick up the locale on the next request).
   useEffect(() => {
     if (typeof window !== 'undefined') {
       localStorage.setItem('language', language);
+      writeLocaleCookie(language);
     }
   }, [language]);
 
@@ -46,4 +58,4 @@ export const TranslationProvider = ({ children }: TranslationProviderProps) => {
       {children}
     </TranslationContext.Provider>
   );
-}; 
+};
