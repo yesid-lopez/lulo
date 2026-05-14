@@ -31,6 +31,7 @@ const CmsCaseStudyCard = ({
   category,
   tags,
   highlights,
+  heroImage,
   mockups,
   links,
   award,
@@ -64,8 +65,39 @@ const CmsCaseStudyCard = ({
         </span>
       </div>
 
-      {/* Image stage */}
-      {featuredMockup ? (
+      {/* Hero image (when set on the case study) — takes precedence over the mockup stage */}
+      {heroImage ? (
+        <div className="relative mx-6 mt-5 overflow-hidden rounded-[20px]">
+          <Image
+            src={heroImage.src}
+            alt={heroImage.alt}
+            width={heroImage.width ?? 1600}
+            height={heroImage.height ?? 1000}
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="block h-auto w-full transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          />
+
+          {award ? (
+            <div className="sora-text absolute left-5 top-5 z-20 flex items-center gap-2 rounded-full bg-gray-950/80 px-3 py-1.5 text-[11px] uppercase tracking-[0.12em] text-white backdrop-blur">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-3.5 w-3.5">
+                <path d="M8 21l4-3 4 3V11" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="12" cy="8" r="6" />
+              </svg>
+              {award}
+            </div>
+          ) : null}
+
+          <div className="sora-text absolute right-5 top-5 z-20 rounded-full bg-white/95 px-3 py-1 text-[11px] uppercase tracking-[0.14em] text-gray-900 shadow-sm backdrop-blur">
+            {eyebrow}
+          </div>
+
+          {awardEvent ? (
+            <div className="sora-light absolute bottom-4 left-5 z-20 rounded-full bg-gray-950/70 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-white backdrop-blur">
+              {awardEvent}
+            </div>
+          ) : null}
+        </div>
+      ) : featuredMockup ? (
         <div
           className="relative mx-6 mt-5 overflow-hidden rounded-[20px]"
           style={{ background: stage }}
