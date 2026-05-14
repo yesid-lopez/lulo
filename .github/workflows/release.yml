@@ -29,6 +29,8 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.release.outputs.url }}
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       GH_REPO: ${{ github.repository }}
@@ -93,3 +95,11 @@ jobs:
             echo ""
             echo "[View release]($URL)"
           } >> "$GITHUB_STEP_SUMMARY"
+
+  cms-publish:
+    needs: release
+    if: ${{ inputs.draft != true }}
+    uses: ./.github/workflows/cms-publish.yml
+    with:
+      tag: ${{ inputs.version }}
+    secrets: inherit
