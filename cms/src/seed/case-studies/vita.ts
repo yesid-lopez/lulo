@@ -48,6 +48,6 @@ export const data: CaseStudySeed = {
       },
     ],
   },
-  status: 'published',
+  status: 'draft',
   featured: false,
 }

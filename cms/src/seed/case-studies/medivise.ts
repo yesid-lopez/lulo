@@ -43,6 +43,6 @@ export const data: CaseStudySeed = {
   links: {
     demo: 'https://devpost.com/software/medivise',
   },
-  status: 'published',
+  status: 'draft',
   featured: false,
 }

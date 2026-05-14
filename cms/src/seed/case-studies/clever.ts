@@ -43,6 +43,6 @@ export const data: CaseStudySeed = {
   links: {
     demo: 'https://devpost.com/software/clever',
   },
-  status: 'published',
+  status: 'draft',
   featured: false,
 }
