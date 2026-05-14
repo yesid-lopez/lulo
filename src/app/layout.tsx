@@ -4,6 +4,7 @@ import { TranslationProvider } from "../hooks/TranslationProvider";
 import "./globals.css";
 import Script from "next/script";
 import { createPageMetadata, siteName, siteUrl } from "@/lib/seo";
+import { getServerLocale } from "@/utils/serverLocale";
 
 // Initialize the Poppins font
 const poppins = Poppins({
@@ -47,15 +48,16 @@ export const viewport: Viewport = {
   themeColor: "#F5F5F5",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const isProd = process.env.NODE_ENV === "production";
+  const locale = await getServerLocale();
 
   return (
-    <html lang="en" className={`${poppins.variable} ${sora.variable}`}>
+    <html lang={locale} className={`${poppins.variable} ${sora.variable}`}>
       {isProd && (
         <Script
           defer
@@ -64,7 +66,7 @@ export default function RootLayout({
         />
       )}
       <body suppressHydrationWarning={true}>
-        <TranslationProvider>{children}</TranslationProvider>
+        <TranslationProvider initialLanguage={locale}>{children}</TranslationProvider>
       </body>
     </html>
   );
