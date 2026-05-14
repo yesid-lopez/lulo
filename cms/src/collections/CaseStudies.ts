@@ -22,13 +22,17 @@ export const CaseStudies: CollectionConfig = {
           value: 'featured-project',
         },
         {
+          label: 'Real Implementation',
+          value: 'real-implementation',
+        },
+        {
           label: 'Hackathon',
           value: 'hackathon',
         },
       ],
       admin: {
         description:
-          'Which surface this case study belongs to. Featured projects render at the top of the case-studies page; hackathons render in the awards grid.',
+          'Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; hackathons render in the awards grid at the bottom.',
       },
     },
     {

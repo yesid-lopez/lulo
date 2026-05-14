@@ -166,9 +166,9 @@ export interface CaseStudy {
   id: number;
   _order?: string | null;
   /**
-   * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; hackathons render in the awards grid.
+   * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; hackathons render in the awards grid at the bottom.
    */
-  type: 'featured-project' | 'hackathon';
+  type: 'featured-project' | 'real-implementation' | 'hackathon';
   /**
    * Name of the app/project (e.g., "Vita", "Clever")
    */

@@ -16,7 +16,7 @@ export type CmsCaseStudyMockup = {
   height?: number;
 };
 
-export type CmsCaseStudyType = 'featured-project' | 'hackathon';
+export type CmsCaseStudyType = 'featured-project' | 'hackathon' | 'real-implementation';
 
 export type CmsCaseStudy = {
   type: CmsCaseStudyType;
