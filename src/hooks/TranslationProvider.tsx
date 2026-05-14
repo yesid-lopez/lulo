@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, createContext, ReactNode } from 'react';
+import React, { useState, useEffect, useCallback, createContext, ReactNode } from 'react';
 import { translations } from '../utils/translations';
 
 type Language = 'en' | 'es' | 'de';
@@ -22,32 +22,47 @@ interface TranslationProviderProps {
 const LOCALE_COOKIE_NAME = 'lulo-locale';
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
-const writeLocaleCookie = (lang: Language) => {
-  if (typeof document === 'undefined') return;
-  document.cookie = `${LOCALE_COOKIE_NAME}=${lang}; Path=/; Max-Age=${ONE_YEAR_SECONDS}; SameSite=Lax`;
+const persistLocale = (lang: Language) => {
+  if (typeof document !== 'undefined') {
+    // Cookie is the source of truth for server components — must be written
+    // synchronously before any router.refresh() so the next server request
+    // sees the new locale.
+    document.cookie = `${LOCALE_COOKIE_NAME}=${lang}; Path=/; Max-Age=${ONE_YEAR_SECONDS}; SameSite=Lax`;
+  }
+  if (typeof window !== 'undefined') {
+    try {
+      window.localStorage.setItem('language', lang);
+    } catch {
+      // Storage may be unavailable (private mode, quota). Cookie is enough.
+    }
+  }
 };
 
 export const TranslationProvider = ({ children }: TranslationProviderProps) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguageState] = useState<Language>('en');
 
-  // Store language preference in localStorage
+  // Hydrate from localStorage on mount, and make sure the cookie matches
+  // what the user previously chose (covers the case where the cookie was
+  // cleared but localStorage survived).
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedLanguage = localStorage.getItem('language') as Language;
-      if (savedLanguage) {
-        setLanguage(savedLanguage);
-      }
+    if (typeof window === 'undefined') return;
+    const saved = window.localStorage.getItem('language') as Language | null;
+    if (saved && saved !== language) {
+      setLanguageState(saved);
+      persistLocale(saved);
+    } else {
+      persistLocale(language);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Mirror the language to localStorage (for client UI strings) and a cookie
-  // (so server components can pick up the locale on the next request).
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('language', language);
-      writeLocaleCookie(language);
-    }
-  }, [language]);
+  const setLanguage = useCallback((lang: Language) => {
+    // Persist BEFORE updating state so any consumer that triggers a server
+    // refetch (e.g. router.refresh()) in the same tick already sees the new
+    // cookie. React state then catches up for client-side UI strings.
+    persistLocale(lang);
+    setLanguageState(lang);
+  }, []);
 
   const t = (key: string): string => {
     return translations[language][key] || key;

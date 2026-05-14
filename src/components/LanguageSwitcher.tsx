@@ -9,9 +9,10 @@ const LanguageSwitcher = () => {
   const { language, setLanguage } = useTranslation();
   const router = useRouter();
 
-  // Switching language updates the cookie via TranslationProvider; calling
-  // router.refresh() then re-fetches server components so CMS content is
-  // served in the newly selected locale.
+  // TranslationProvider.setLanguage writes the lulo-locale cookie
+  // synchronously before updating React state, so by the time we call
+  // router.refresh() here the next server request already sees the new
+  // locale and re-fetches CMS content in the selected language.
   const switchTo = (lang: Language) => {
     if (lang === language) return;
     setLanguage(lang);
