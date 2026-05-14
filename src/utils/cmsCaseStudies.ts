@@ -12,6 +12,8 @@ export type CmsCaseStudyLink = {
 export type CmsCaseStudyMockup = {
   src: string;
   alt: string;
+  width?: number;
+  height?: number;
 };
 
 export type CmsCaseStudyType = 'featured-project' | 'hackathon';
@@ -27,6 +29,7 @@ export type CmsCaseStudy = {
   status: string;
   tags: string[];
   highlights: string[];
+  heroImage?: CmsCaseStudyMockup;
   mockups: CmsCaseStudyMockup[];
   features: CmsCaseStudyFeature[];
   links: CmsCaseStudyLink[];
@@ -40,6 +43,8 @@ const cmsUrl = (process.env.CMS_URL || 'https://cms.luloai.com').replace(/\/$/, 
 type PayloadMedia = {
   url?: string | null;
   alt?: string | null;
+  width?: number | null;
+  height?: number | null;
 };
 
 type PayloadCaseStudy = {
@@ -52,6 +57,7 @@ type PayloadCaseStudy = {
   keyFeatures: Array<{ number: string; title: string; description: string }>;
   tags?: Array<{ tag: string }> | null;
   images?: {
+    hero?: PayloadMedia | null;
     mockups?: Array<{ image?: PayloadMedia | null; caption?: string | null }> | null;
   } | null;
   links?: {
@@ -88,6 +94,15 @@ const titleCaseCategory = (category: string): string =>
 const mapCaseStudy = (doc: PayloadCaseStudy): CmsCaseStudy => {
   const tags = (doc.tags ?? []).map((t) => t.tag).filter(Boolean);
   const features = doc.keyFeatures ?? [];
+  const heroUrl = doc.images?.hero?.url;
+  const heroImage: CmsCaseStudyMockup | undefined = heroUrl
+    ? {
+        src: absoluteMediaUrl(heroUrl),
+        alt: doc.images?.hero?.alt ?? doc.title,
+        width: doc.images?.hero?.width ?? undefined,
+        height: doc.images?.hero?.height ?? undefined,
+      }
+    : undefined;
   const mockups = (doc.images?.mockups ?? [])
     .map((m) => {
       const url = m.image?.url;
@@ -118,6 +133,7 @@ const mapCaseStudy = (doc: PayloadCaseStudy): CmsCaseStudy => {
     status: doc.status.charAt(0).toUpperCase() + doc.status.slice(1),
     tags,
     highlights: features.slice(0, 3).map((f) => f.title),
+    heroImage,
     mockups,
     features,
     links,
