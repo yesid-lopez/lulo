@@ -70,6 +70,7 @@ COPY             --chown=nextjs:nodejs src/payload.config.ts     ./src/payload.c
 COPY             --chown=nextjs:nodejs src/payload-types.ts      ./src/payload-types.ts
 COPY             --chown=nextjs:nodejs src/migrations            ./src/migrations
 COPY             --chown=nextjs:nodejs src/collections           ./src/collections
+COPY             --chown=nextjs:nodejs src/seed                  ./src/seed
 
 USER nextjs
 
