@@ -33,7 +33,7 @@ services:
   # Uncomment the following to use postgres
   postgres:
     restart: always
-    image: postgres:latest
+    image: postgres:17
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
