@@ -3,7 +3,7 @@ import type { CaseStudySeed } from './index'
 export const slug = 'resumelo'
 
 export const data: CaseStudySeed = {
-  type: 'featured-project',
+  type: 'real-implementation',
   title: 'Resumelo',
   slug,
   description:
