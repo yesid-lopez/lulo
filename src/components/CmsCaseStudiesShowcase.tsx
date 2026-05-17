@@ -1,8 +1,10 @@
 import { getCmsCaseStudiesByType, type CmsCaseStudy } from '@/utils/cmsCaseStudies';
+import { getServerLocale } from '@/utils/serverLocale';
 import CmsCaseStudyCard, { type CaseStudyExtras } from './CmsCaseStudyCard';
 
 export default async function CmsCaseStudiesShowcase() {
-  const featuredProjects = (await getCmsCaseStudiesByType('featured-project')) as Array<
+  const locale = await getServerLocale();
+  const featuredProjects = (await getCmsCaseStudiesByType('featured-project', locale)) as Array<
     CmsCaseStudy & CaseStudyExtras
   >;
 
