@@ -7,7 +7,13 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag to publish, e.g. cms-v1.2.3'
+        description: 'Release tag to publish, e.g. v1.2.3 or cms-v1.2.3'
+        required: true
+        type: string
+  workflow_call:
+    inputs:
+      tag:
+        description: 'Release tag to publish, e.g. v1.2.3 or cms-v1.2.3'
         required: true
         type: string
 
@@ -28,8 +34,8 @@ jobs:
         id: tag
         run: |
           TAG="${{ github.event.release.tag_name || inputs.tag }}"
-          if ! echo "$TAG" | grep -Eq '^cms-v[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "Invalid tag '$TAG'. Expected format: cms-vX.Y.Z, e.g. cms-v1.2.3" >&2
+          if ! echo "$TAG" | grep -Eq '^(cms-)?v[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Invalid tag '$TAG'. Expected format: vX.Y.Z or cms-vX.Y.Z, e.g. v1.2.3" >&2
             exit 1
           fi
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"

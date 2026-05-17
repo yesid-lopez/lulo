@@ -39,6 +39,7 @@ export const CaseStudies: CollectionConfig = {
       name: 'title',
       type: 'text',
       required: true,
+      localized: true,
       admin: {
         description: 'Name of the app/project (e.g., "Vita", "Clever")',
       },
@@ -56,6 +57,7 @@ export const CaseStudies: CollectionConfig = {
       name: 'description',
       type: 'textarea',
       required: true,
+      localized: true,
       admin: {
         description: 'Brief description of the project and its purpose',
       },
@@ -114,6 +116,7 @@ export const CaseStudies: CollectionConfig = {
         {
           name: 'title',
           type: 'text',
+          localized: true,
           admin: {
             description: 'Award title (e.g., "Winner (2nd Place)")',
           },
@@ -121,6 +124,7 @@ export const CaseStudies: CollectionConfig = {
         {
           name: 'event',
           type: 'text',
+          localized: true,
           admin: {
             description: 'Event name (e.g., "Redpanda AI Hackathon")',
           },
@@ -157,6 +161,7 @@ export const CaseStudies: CollectionConfig = {
           name: 'title',
           type: 'text',
           required: true,
+          localized: true,
           admin: {
             description: 'Feature title (e.g., "Real-Time Glucose Monitoring")',
           },
@@ -165,6 +170,7 @@ export const CaseStudies: CollectionConfig = {
           name: 'description',
           type: 'textarea',
           required: true,
+          localized: true,
           admin: {
             description: 'Detailed description of the feature',
           },
@@ -208,6 +214,7 @@ export const CaseStudies: CollectionConfig = {
           name: 'tag',
           type: 'text',
           required: true,
+          localized: true,
         },
       ],
       admin: {

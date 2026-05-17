@@ -1,0 +1,111 @@
+name: release
+run-name: ${{ inputs.version }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Semantic version tag (e.g. v1.2.3)'
+        required: true
+        type: string
+      release_name:
+        description: 'Human-readable release title (defaults to version)'
+        required: false
+        type: string
+        default: ''
+      draft:
+        description: 'Create as draft release'
+        required: false
+        type: boolean
+        default: false
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.release.outputs.url }}
+      tag: ${{ steps.tag.outputs.tag }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Validate semver and compute tag
+        id: tag
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if ! printf '%s' "$VERSION" | grep -Eq '^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$'; then
+            echo "::error::Version must follow semver format (e.g. v1.2.3)."
+            exit 1
+          fi
+          TAG="cms-${VERSION}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
+          echo "Version: $VERSION (tag: $TAG)"
+
+      - name: Verify maintainer permissions
+        env:
+          ACTOR: ${{ github.actor }}
+        run: |
+          PERMISSION=$(gh api "repos/${GH_REPO}/collaborators/${ACTOR}/permission" --jq '.permission' 2>/dev/null || echo "none")
+          echo "User '${ACTOR}' has permission '${PERMISSION}'."
+          case "$PERMISSION" in
+            admin|maintain) ;;
+            *)
+              echo "::error::Only maintainers can create releases."
+              exit 1
+              ;;
+          esac
+
+      - name: Verify tag does not already exist
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          if gh api "repos/${GH_REPO}/git/ref/tags/${TAG}" --silent 2>/dev/null; then
+            echo "::error::Tag '${TAG}' already exists. Choose a different version."
+            exit 1
+          fi
+
+      - name: Create GitHub Release
+        id: release
+        env:
+          VERSION: ${{ inputs.version }}
+          TAG: ${{ steps.tag.outputs.tag }}
+          RELEASE_NAME: ${{ inputs.release_name }}
+          DRAFT: ${{ inputs.draft }}
+          PRERELEASE: ${{ inputs.prerelease }}
+          TARGET_SHA: ${{ github.sha }}
+        run: |
+          TITLE="${RELEASE_NAME:-$TAG}"
+          ARGS=(--generate-notes --title "$TITLE" --target "$TARGET_SHA")
+          if [ "$DRAFT" = "true" ]; then ARGS+=(--draft); fi
+          if [ "$PRERELEASE" = "true" ]; then ARGS+=(--prerelease); fi
+          gh release create "$TAG" "${ARGS[@]}"
+          URL=$(gh release view "$TAG" --json url --jq '.url')
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        env:
+          URL: ${{ steps.release.outputs.url }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          {
+            echo "## Release \`$TAG\` created"
+            echo ""
+            echo "[View release]($URL)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  cms-publish:
+    needs: release
+    if: ${{ inputs.draft != true }}
+    uses: ./.github/workflows/cms-publish.yml
+    with:
+      tag: ${{ needs.release.outputs.tag }}
+    secrets: inherit

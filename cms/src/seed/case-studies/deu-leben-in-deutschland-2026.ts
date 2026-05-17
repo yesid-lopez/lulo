@@ -1,4 +1,4 @@
-import type { CaseStudySeed } from './index'
+import type { CaseStudySeed, CaseStudyTranslations } from './index'
 
 export const slug = 'deu-leben-in-deutschland-2026'
 
@@ -70,4 +70,115 @@ export const data: CaseStudySeed = {
   },
   status: 'published',
   featured: false,
+}
+
+export const translations: CaseStudyTranslations = {
+  es: {
+    title: 'DEU: Leben in Deutschland 2026',
+    description:
+      'Una plataforma de estudio completa para iOS, pensada para preparar el examen de ciudadanía alemana (Einbürgerungstest / Leben in Deutschland). Cubre las 310+ preguntas oficiales de los 16 Bundesländer con explicaciones detalladas y contexto legal, varios modos de estudio, simulación de examen y soporte multilingüe en 10 idiomas.',
+    keyFeatures: [
+      {
+        title: '310+ preguntas oficiales',
+        description:
+          'Banco oficial completo de preguntas para los 16 estados alemanes, con explicaciones detalladas y contexto legal en cada respuesta.',
+      },
+      {
+        title: 'Varios modos de estudio',
+        description:
+          'Modo Práctica, modo por Estado, modo Examen y Preguntas Guardadas permiten adaptar la preparación al estilo de aprendizaje y al progreso de cada usuario.',
+      },
+      {
+        title: 'Soporte multilingüe',
+        description:
+          'Disponible en alemán, inglés, turco, español, ruso, árabe, polaco, rumano, italiano y persa para apoyar a candidatos de distintos orígenes.',
+      },
+      {
+        title: 'Simulación de examen',
+        description:
+          'Simulacros de 33 preguntas que replican el formato oficial del Einbürgerungstest con presión de tiempo realista.',
+      },
+      {
+        title: 'Contenido por región',
+        description:
+          'Elige tu Bundesland para acceder a las preguntas localizadas relevantes para tu estado de residencia.',
+      },
+      {
+        title: 'Acceso sin conexión',
+        description:
+          'Experiencia de estudio completa sin conexión a Internet — practica donde quieras.',
+      },
+      {
+        title: 'Seguimiento de progreso',
+        description:
+          'Monitoreo en tiempo real del avance de estudio por modos y temas.',
+      },
+      {
+        title: 'Accesibilidad',
+        description:
+          'Interfaz oscura, texto ampliable hasta 200% y retroalimentación háptica para una experiencia inclusiva.',
+      },
+    ],
+    tags: [
+      { tag: 'App iOS' },
+      { tag: 'Examen de ciudadanía' },
+      { tag: 'Educación' },
+      { tag: 'Preparación de examen' },
+      { tag: 'Multilingüe' },
+    ],
+  },
+  de: {
+    title: 'DEU: Leben in Deutschland 2026',
+    description:
+      'Eine umfassende iOS-Lernplattform für den deutschen Einbürgerungstest („Leben in Deutschland"). Deckt alle 310+ offiziellen Fragen aus den 16 Bundesländern ab — mit ausführlichen Erklärungen und rechtlichem Kontext, mehreren Lernmodi, Prüfungssimulation und mehrsprachiger Unterstützung in 10 Sprachen.',
+    keyFeatures: [
+      {
+        title: '310+ offizielle Fragen',
+        description:
+          'Vollständiger amtlicher Fragenkatalog für alle 16 Bundesländer — mit ausführlichen Erklärungen und rechtlichem Kontext zu jeder Antwort.',
+      },
+      {
+        title: 'Mehrere Lernmodi',
+        description:
+          'Übungsmodus, Bundesland-Modus, Prüfungsmodus und gespeicherte Fragen erlauben es, die Vorbereitung an den eigenen Lernstil und Fortschritt anzupassen.',
+      },
+      {
+        title: 'Mehrsprachige Unterstützung',
+        description:
+          'Verfügbar auf Deutsch, Englisch, Türkisch, Spanisch, Russisch, Arabisch, Polnisch, Rumänisch, Italienisch und Persisch — für ein breites Spektrum an Kandidat:innen.',
+      },
+      {
+        title: 'Prüfungssimulation',
+        description:
+          'Probetests mit 33 Fragen, die das offizielle Format des Einbürgerungstests unter realistischem Zeitdruck nachbilden.',
+      },
+      {
+        title: 'Regionalspezifische Inhalte',
+        description:
+          'Wähle dein Bundesland, um die für deinen Wohnort relevanten Landesfragen freizuschalten.',
+      },
+      {
+        title: 'Offline-Zugriff',
+        description:
+          'Komplettes Lernerlebnis ohne Internetverbindung — üben, wo immer du gerade bist.',
+      },
+      {
+        title: 'Fortschrittsverfolgung',
+        description:
+          'Echtzeit-Überblick über den Lernfortschritt nach Modus und Thema.',
+      },
+      {
+        title: 'Barrierefreiheit',
+        description:
+          'Dunkles Interface, bis zu 200 % vergrößerter Text und haptisches Feedback für ein inklusives Erlebnis.',
+      },
+    ],
+    tags: [
+      { tag: 'iOS-App' },
+      { tag: 'Einbürgerungstest' },
+      { tag: 'Bildung' },
+      { tag: 'Prüfungsvorbereitung' },
+      { tag: 'Mehrsprachig' },
+    ],
+  },
 }
