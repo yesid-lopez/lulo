@@ -23,6 +23,11 @@ export default buildConfig({
   },
   collections: [Users, Media, CaseStudies],
   editor: lexicalEditor(),
+  localization: {
+    locales: ['en', 'es', 'de'],
+    defaultLocale: 'en',
+    fallback: true,
+  },
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),

@@ -3,6 +3,7 @@ import * as migration_20260511_120700 from './20260511_120700';
 import * as migration_20260513_120000 from './20260513_120000';
 import * as migration_20260513_150828_add_orderable_case_studies from './20260513_150828_add_orderable_case_studies';
 import * as migration_20260514_131500_add_real_implementation_to_case_studies_type from './20260514_131500_add_real_implementation_to_case_studies_type';
+import * as migration_20260514_162502_localize_case_studies from './20260514_162502_localize_case_studies';
 
 export const migrations = [
   {
@@ -23,11 +24,16 @@ export const migrations = [
   {
     up: migration_20260513_150828_add_orderable_case_studies.up,
     down: migration_20260513_150828_add_orderable_case_studies.down,
-    name: '20260513_150828_add_orderable_case_studies'
+    name: '20260513_150828_add_orderable_case_studies',
   },
   {
     up: migration_20260514_131500_add_real_implementation_to_case_studies_type.up,
     down: migration_20260514_131500_add_real_implementation_to_case_studies_type.down,
-    name: '20260514_131500_add_real_implementation_to_case_studies_type'
+    name: '20260514_131500_add_real_implementation_to_case_studies_type',
+  },
+  {
+    up: migration_20260514_162502_localize_case_studies.up,
+    down: migration_20260514_162502_localize_case_studies.down,
+    name: '20260514_162502_localize_case_studies'
   },
 ];
