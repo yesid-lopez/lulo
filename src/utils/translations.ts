@@ -34,6 +34,7 @@ export const translations: Translations = {
     mlConsulting: 'Machine Learning Consulting',
     nlpSolutions: 'NLP Solutions',
     customAiAgents: 'Custom AI Agents',
+    website: 'Website',
     // Timeline options
     urgent: 'Urgent - ASAP',
     within1Month: 'Within 1 month',
@@ -200,6 +201,7 @@ export const translations: Translations = {
     mlConsulting: 'Consultoría de Machine Learning',
     nlpSolutions: 'Soluciones de NLP',
     customAiAgents: 'Agentes de IA Personalizados',
+    website: 'Sitio Web',
     // Timeline options
     urgent: 'Urgente - Lo antes posible',
     within1Month: 'Dentro de 1 mes',
@@ -366,6 +368,7 @@ export const translations: Translations = {
     mlConsulting: 'Machine Learning Beratung',
     nlpSolutions: 'NLP-Lösungen',
     customAiAgents: 'Individuelle AI-Agenten',
+    website: 'Webseite',
     // Timeline options
     urgent: 'Dringend - So schnell wie möglich',
     within1Month: 'Innerhalb eines Monats',

@@ -71,6 +71,8 @@ export function useContactForm(): UseContactFormReturn {
         return "NLP Solutions";
       case "custom-ai-agents":
         return "Custom AI Agents";
+      case "website":
+        return "Website";
       default:
         return "General Inquiry";
     }

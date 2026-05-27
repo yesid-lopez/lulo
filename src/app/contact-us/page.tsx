@@ -108,6 +108,7 @@ export default function ContactUs() {
                     <option value="ml-consulting">{t('mlConsulting')}</option>
                     <option value="nlp-solutions">{t('nlpSolutions')}</option>
                     <option value="custom-ai-agents">{t('customAiAgents')}</option>
+                    <option value="website">{t('website')}</option>
                   </select>
                 </div>
                 
