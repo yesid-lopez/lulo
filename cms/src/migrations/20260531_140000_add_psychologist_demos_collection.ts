@@ -5,6 +5,7 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
    CREATE TYPE "public"."enum_psychologist_demos_status" AS ENUM('draft', 'published');
   CREATE TABLE "psychologist_demos" (
   	"id" serial PRIMARY KEY NOT NULL,
+  	"_order" varchar,
   	"title" varchar NOT NULL,
   	"slug" varchar NOT NULL,
   	"specialty" varchar NOT NULL,
@@ -12,7 +13,6 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   	"demo_url" varchar NOT NULL,
   	"hero_image_id" integer,
   	"status" "enum_psychologist_demos_status" DEFAULT 'published' NOT NULL,
-  	"_order" varchar,
   	"updated_at" timestamp(3) with time zone DEFAULT now() NOT NULL,
   	"created_at" timestamp(3) with time zone DEFAULT now() NOT NULL
   );
