@@ -3,11 +3,25 @@ import { existsSync } from 'fs'
 import { resolve } from 'path'
 
 import { caseStudies, type CaseStudySeed } from './case-studies'
+import { psychologistDemos, type PsychologistDemoSeed } from './psychologist-demos'
+
+// Each collection is seeded by slug. `docs` is loosely typed because the two
+// collections have different shapes; Payload's create/update validate the data.
+type SeedGroup = {
+  collection: 'case-studies' | 'psychologist-demos'
+  docs: Array<CaseStudySeed | PsychologistDemoSeed>
+}
+
+const seedGroups: SeedGroup[] = [
+  { collection: 'case-studies', docs: caseStudies },
+  { collection: 'psychologist-demos', docs: psychologistDemos },
+]
 
 const main = async (): Promise<void> => {
   const args = process.argv.slice(2)
   const force = args.includes('--force')
   const slugFilter = args.find((arg) => !arg.startsWith('--'))
+
   const envName = process.env.SEED_ENV
 
   if (envName) {
@@ -20,13 +34,17 @@ const main = async (): Promise<void> => {
     console.log(`Loaded env from ${envPath}`)
   }
 
-  const allSlugs = caseStudies.map((c) => c.slug)
+  const allSlugs = seedGroups.flatMap((group) => group.docs.map((doc) => doc.slug))
   if (slugFilter && !allSlugs.includes(slugFilter)) {
     console.error(`No seed found for "${slugFilter}". Available: ${allSlugs.join(', ')}`)
     process.exit(1)
   }
 
-  const targets = slugFilter ? caseStudies.filter((c) => c.slug === slugFilter) : caseStudies
+  const targets: SeedGroup[] = slugFilter
+    ? seedGroups
+        .map((group) => ({ ...group, docs: group.docs.filter((doc) => doc.slug === slugFilter) }))
+        .filter((group) => group.docs.length > 0)
+    : seedGroups
 
   // If CMS_URL is set we use the remote REST API (recommended for prod).
   // Otherwise fall back to the embedded Payload Local API against the local DB.
@@ -39,7 +57,7 @@ const main = async (): Promise<void> => {
   process.exit(0)
 }
 
-const seedViaLocalPayload = async (targets: CaseStudySeed[], force: boolean): Promise<void> => {
+const seedViaLocalPayload = async (targets: SeedGroup[], force: boolean): Promise<void> => {
   // Import Payload + config AFTER env override so the config picks up the right
   // DATABASE_URI / PAYLOAD_SECRET. Static imports would evaluate the config at
   // module load time, before we've had a chance to override env.
@@ -51,36 +69,38 @@ const seedViaLocalPayload = async (targets: CaseStudySeed[], force: boolean): Pr
 
   await ensureDevUser(payload)
 
-  for (const data of targets) {
-    const existing = await payload.find({
-      collection: 'case-studies',
-      where: { slug: { equals: data.slug } },
-      limit: 1,
-      depth: 0,
-    })
+  for (const { collection, docs } of targets) {
+    for (const data of docs) {
+      const existing = await payload.find({
+        collection,
+        where: { slug: { equals: data.slug } },
+        limit: 1,
+        depth: 0,
+      })
 
-    if (existing.docs.length > 0) {
-      if (force) {
-        await payload.update({
-          collection: 'case-studies',
-          id: existing.docs[0].id,
-          data,
-        })
-        console.log(`updated case-studies/${data.slug}`)
-      } else {
-        console.log(
-          `skipped case-studies/${data.slug} (already exists; pass --force to overwrite)`,
-        )
+      if (existing.docs.length > 0) {
+        if (force) {
+          await payload.update({
+            collection,
+            id: existing.docs[0].id,
+            data: data as never,
+          })
+          console.log(`updated ${collection}/${data.slug}`)
+        } else {
+          console.log(
+            `skipped ${collection}/${data.slug} (already exists; pass --force to overwrite)`,
+          )
+        }
+        continue
       }
-      continue
-    }
 
-    await payload.create({ collection: 'case-studies', data })
-    console.log(`created case-studies/${data.slug}`)
+      await payload.create({ collection, data: data as never })
+      console.log(`created ${collection}/${data.slug}`)
+    }
   }
 }
 
-const seedViaApi = async (targets: CaseStudySeed[], force: boolean): Promise<void> => {
+const seedViaApi = async (targets: SeedGroup[], force: boolean): Promise<void> => {
   const baseUrl = process.env.CMS_URL!.replace(/\/$/, '')
   const email = process.env.CMS_EMAIL
   const password = process.env.CMS_PASSWORD
@@ -93,23 +113,25 @@ const seedViaApi = async (targets: CaseStudySeed[], force: boolean): Promise<voi
   const token = await login(baseUrl, email, password)
   console.log(`Authenticated against ${baseUrl}`)
 
-  for (const data of targets) {
-    const existingId = await findBySlug(baseUrl, token, data.slug)
+  for (const { collection, docs } of targets) {
+    for (const data of docs) {
+      const existingId = await findBySlug(baseUrl, token, collection, data.slug)
 
-    if (existingId) {
-      if (force) {
-        await apiRequest(`${baseUrl}/api/case-studies/${existingId}`, token, 'PATCH', data)
-        console.log(`updated case-studies/${data.slug}`)
-      } else {
-        console.log(
-          `skipped case-studies/${data.slug} (already exists; pass --force to overwrite)`,
-        )
+      if (existingId) {
+        if (force) {
+          await apiRequest(`${baseUrl}/api/${collection}/${existingId}`, token, 'PATCH', data)
+          console.log(`updated ${collection}/${data.slug}`)
+        } else {
+          console.log(
+            `skipped ${collection}/${data.slug} (already exists; pass --force to overwrite)`,
+          )
+        }
+        continue
       }
-      continue
-    }
 
-    await apiRequest(`${baseUrl}/api/case-studies`, token, 'POST', data)
-    console.log(`created case-studies/${data.slug}`)
+      await apiRequest(`${baseUrl}/api/${collection}`, token, 'POST', data)
+      console.log(`created ${collection}/${data.slug}`)
+    }
   }
 }
 
@@ -133,9 +155,10 @@ const login = async (baseUrl: string, email: string, password: string): Promise<
 const findBySlug = async (
   baseUrl: string,
   token: string,
+  collection: string,
   slug: string,
 ): Promise<string | null> => {
-  const url = `${baseUrl}/api/case-studies?where[slug][equals]=${encodeURIComponent(slug)}&limit=1&depth=0`
+  const url = `${baseUrl}/api/${collection}?where[slug][equals]=${encodeURIComponent(slug)}&limit=1&depth=0`
   const res = await fetch(url, { headers: { Authorization: `JWT ${token}` } })
 
   if (!res.ok) {
@@ -150,7 +173,7 @@ const apiRequest = async (
   url: string,
   token: string,
   method: 'POST' | 'PATCH',
-  data: CaseStudySeed,
+  data: CaseStudySeed | PsychologistDemoSeed,
 ): Promise<void> => {
   const res = await fetch(url, {
     method,

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight, CalendarCheck, Palette, ShieldCheck } from 'lucide-react';
-import { getCmsCaseStudiesByType, type CmsCaseStudy } from '@/utils/cmsCaseStudies';
+import { getCmsPsychologistDemos, type CmsPsychologistDemo } from '@/utils/psychologistDemos';
 import {
   psychologistDemoFallbacks,
   type PsychologistDemo,
@@ -9,21 +9,20 @@ import {
 
 const fallbackBySlug = new Map(psychologistDemoFallbacks.map((demo) => [demo.slug, demo]));
 
-const mapCmsDemo = (study: CmsCaseStudy): PsychologistDemo | null => {
-  const fallback = fallbackBySlug.get(study.slug);
-  const primaryUrl = study.links.find((link) => /demo\.luloai\.com/i.test(link.url))?.url;
-  const image = study.heroImage ?? fallback?.image;
+const mapCmsDemo = (demo: CmsPsychologistDemo): PsychologistDemo | null => {
+  const fallback = fallbackBySlug.get(demo.slug);
+  const image = demo.heroImage ?? fallback?.image;
 
-  if (!primaryUrl || !image) {
+  if (!demo.demoUrl || !image) {
     return null;
   }
 
   return {
-    title: study.title,
-    slug: study.slug,
-    url: primaryUrl,
-    specialty: study.tags[0] ?? fallback?.specialty ?? study.category,
-    summary: study.summary || fallback?.summary || study.description,
+    title: demo.title,
+    slug: demo.slug,
+    url: demo.demoUrl,
+    specialty: demo.specialty || fallback?.specialty || '',
+    summary: demo.summary || fallback?.summary || '',
     image: {
       src: image.src,
       alt: image.alt,
@@ -33,7 +32,7 @@ const mapCmsDemo = (study: CmsCaseStudy): PsychologistDemo | null => {
 
 const getPsychologistDemos = async (): Promise<PsychologistDemo[]> => {
   try {
-    const cmsDemos = await getCmsCaseStudiesByType('psychologist-demo');
+    const cmsDemos = await getCmsPsychologistDemos();
     const mapped = cmsDemos.map(mapCmsDemo).filter((demo): demo is PsychologistDemo => demo !== null);
 
     return mapped.length > 0 ? mapped : psychologistDemoFallbacks;

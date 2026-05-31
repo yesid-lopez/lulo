@@ -16,9 +16,7 @@ const staticRoutes = [
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
-  const caseStudies = (await getCmsCaseStudies()).filter(
-    (study) => study.type !== "psychologist-demo",
-  );
+  const caseStudies = await getCmsCaseStudies();
   const routes = [
     ...staticRoutes,
     ...caseStudies.map((study) => `/case-studies/${study.slug}`),

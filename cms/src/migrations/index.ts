@@ -4,6 +4,7 @@ import * as migration_20260513_120000 from './20260513_120000';
 import * as migration_20260513_150828_add_orderable_case_studies from './20260513_150828_add_orderable_case_studies';
 import * as migration_20260514_131500_add_real_implementation_to_case_studies_type from './20260514_131500_add_real_implementation_to_case_studies_type';
 import * as migration_20260531_120000_add_psychologist_demo_to_case_studies_type from './20260531_120000_add_psychologist_demo_to_case_studies_type';
+import * as migration_20260531_140000_add_psychologist_demos_collection from './20260531_140000_add_psychologist_demos_collection';
 
 export const migrations = [
   {
@@ -35,5 +36,10 @@ export const migrations = [
     up: migration_20260531_120000_add_psychologist_demo_to_case_studies_type.up,
     down: migration_20260531_120000_add_psychologist_demo_to_case_studies_type.down,
     name: '20260531_120000_add_psychologist_demo_to_case_studies_type'
+  },
+  {
+    up: migration_20260531_140000_add_psychologist_demos_collection.up,
+    down: migration_20260531_140000_add_psychologist_demos_collection.down,
+    name: '20260531_140000_add_psychologist_demos_collection'
   },
 ];

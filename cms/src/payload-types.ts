@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     'case-studies': CaseStudy;
+    'psychologist-demos': PsychologistDemo;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -79,6 +80,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    'psychologist-demos': PsychologistDemosSelect<false> | PsychologistDemosSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -166,9 +168,9 @@ export interface CaseStudy {
   id: number;
   _order?: string | null;
   /**
-   * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; psychologist demos render on the home page; hackathons render in the awards grid at the bottom.
+   * Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; hackathons render in the awards grid at the bottom. Psychologist demos live in their own collection.
    */
-  type: 'featured-project' | 'real-implementation' | 'psychologist-demo' | 'hackathon';
+  type: 'featured-project' | 'real-implementation' | 'hackathon';
   /**
    * Name of the app/project (e.g., "Vita", "Clever")
    */
@@ -290,6 +292,43 @@ export interface CaseStudy {
   createdAt: string;
 }
 /**
+ * Demo websites for mental-health professionals. Rendered on the home page and the hidden /demos-psicologos route. Separate from case studies.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "psychologist-demos".
+ */
+export interface PsychologistDemo {
+  id: number;
+  _order?: string | null;
+  /**
+   * Professional name shown on the card (e.g., "Daniela Rivas")
+   */
+  title: string;
+  /**
+   * URL-friendly identifier. Also used to match the local fallback image at /psychologist-demos/<slug>.png when no hero image is uploaded.
+   */
+  slug: string;
+  /**
+   * Specialty shown as the card eyebrow (e.g., "Psicología clínica")
+   */
+  specialty: string;
+  /**
+   * Short description shown on the card
+   */
+  summary: string;
+  /**
+   * Link to the live demo (e.g., https://daniela-rivas.demo.luloai.com)
+   */
+  demoUrl: string;
+  /**
+   * Optional screenshot. When set it takes priority over the local fallback image; otherwise the landing falls back to /psychologist-demos/<slug>.png.
+   */
+  heroImage?: (number | null) | Media;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
@@ -307,6 +346,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'case-studies';
         value: number | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'psychologist-demos';
+        value: number | PsychologistDemo;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -459,6 +502,22 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   status?: T;
   featured?: T;
   completionDate?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "psychologist-demos_select".
+ */
+export interface PsychologistDemosSelect<T extends boolean = true> {
+  _order?: T;
+  title?: T;
+  slug?: T;
+  specialty?: T;
+  summary?: T;
+  demoUrl?: T;
+  heroImage?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }

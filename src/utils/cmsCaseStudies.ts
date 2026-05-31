@@ -19,8 +19,7 @@ export type CmsCaseStudyMockup = {
 export type CmsCaseStudyType =
   | 'featured-project'
   | 'hackathon'
-  | 'real-implementation'
-  | 'psychologist-demo';
+  | 'real-implementation';
 
 export type CmsCaseStudy = {
   type: CmsCaseStudyType;
