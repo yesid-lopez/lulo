@@ -26,13 +26,17 @@ export const CaseStudies: CollectionConfig = {
           value: 'real-implementation',
         },
         {
+          label: 'Psychologist Demo',
+          value: 'psychologist-demo',
+        },
+        {
           label: 'Hackathon',
           value: 'hackathon',
         },
       ],
       admin: {
         description:
-          'Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; hackathons render in the awards grid at the bottom.',
+          'Which surface this case study belongs to. Featured projects render at the top of the case-studies page; real implementations render in the middle for shipped products and client work; psychologist demos render on the home page; hackathons render in the awards grid at the bottom.',
       },
     },
     {
