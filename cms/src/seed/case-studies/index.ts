@@ -8,7 +8,6 @@ import { data as photofolio } from './photofolio'
 import { data as resumelo } from './resumelo'
 import { data as yesidPlatformLab } from './yesid-platform-lab'
 import { data as yesidPortfolio } from './yesid-portfolio'
-import { data as psychologistDemos } from './psychologist-demos'
 
 export const caseStudies: CaseStudySeed[] = [
   deuLebenInDeutschland2026,
@@ -17,5 +16,4 @@ export const caseStudies: CaseStudySeed[] = [
   resumelo,
   yesidPlatformLab,
   yesidPortfolio,
-  ...psychologistDemos,
 ]
