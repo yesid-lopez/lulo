@@ -21,7 +21,7 @@ export default function HomeHero() {
   }, []);
 
   return (
-    <section className="flex min-h-[calc(100svh-145px)] flex-col md:flex-row">
+    <section className="flex min-h-[calc(100svh-73px)] flex-col md:flex-row">
       <div className="flex w-full flex-col items-center justify-center border-b border-gray-300 p-4 sm:p-6 md:w-1/3 md:border-b-0 md:border-r md:p-8">
         <div className="flex flex-col-reverse text-center md:flex-col">
           <div className="lulo-text overflow-visible text-[80px] font-light leading-none sm:text-[100px] md:text-[120px] lg:text-[160px]">

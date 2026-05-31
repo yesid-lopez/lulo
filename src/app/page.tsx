@@ -1,7 +1,5 @@
 import Navigation from '@/components/Navigation';
 import HomeHero from '@/components/HomeHero';
-import PsychologistDemosSection from '@/components/PsychologistDemosSection';
-import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -9,9 +7,7 @@ export default function Home() {
       <Navigation />
       <main>
         <HomeHero />
-        <PsychologistDemosSection />
       </main>
-      <Footer />
     </div>
   );
 }

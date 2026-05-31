@@ -11,7 +11,9 @@ type CaseStudyPageProps = {
 };
 
 export async function generateStaticParams() {
-  const studies = await getCmsCaseStudies();
+  const studies = (await getCmsCaseStudies()).filter(
+    (study) => study.type !== 'psychologist-demo',
+  );
   return studies.map((study) => ({ slug: study.slug }));
 }
 
@@ -19,7 +21,7 @@ export async function generateMetadata({ params }: CaseStudyPageProps) {
   const { slug } = await params;
   const study = await getCmsCaseStudyBySlug(slug);
 
-  if (!study) {
+  if (!study || study.type === 'psychologist-demo') {
     return createPageMetadata({
       title: 'Case Study',
       description: 'Explore lulo AI product case studies and practical digital solutions.',
@@ -38,7 +40,7 @@ export default async function CmsCaseStudyDetailPage({ params }: CaseStudyPagePr
   const { slug } = await params;
   const study = await getCmsCaseStudyBySlug(slug);
 
-  if (!study) {
+  if (!study || study.type === 'psychologist-demo') {
     notFound();
   }
 
